@@ -1,10 +1,10 @@
 <template>
     <el-container>
         <el-header>
-            <cli-title></cli-title>
+            <cli-title class="title"></cli-title>
         </el-header>
         <el-main>
-            <cli-menu></cli-menu>
+            <cli-menu class="menu"></cli-menu>
 
         </el-main>
         <el-footer></el-footer>
@@ -21,5 +21,6 @@
 </script>
 
 <style scoped>
+    @import "../../assets/css/page.css";
 
 </style>

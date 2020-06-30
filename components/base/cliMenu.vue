@@ -2,7 +2,7 @@
     <div>
         <div>
             <img src="../../assets/image/logo.png"
-                 style="width: 8%; margin-left: 10px; margin-top: 10px" alt="">
+                 style="width: 80%; margin-left: 10px; margin-top: 10px" alt="">
         </div>
         <el-menu
                 default-active="1"
