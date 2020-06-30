@@ -83,7 +83,7 @@
                             ref="filterTable"
                             :data="eventData"
                             stripe
-                            @row-dblcick="eventShow"
+                            @row-dblclick="eventShow"
                             style="width: 100%">
                         <el-table-column
                                 prop="ID"
