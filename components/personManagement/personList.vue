@@ -49,14 +49,14 @@
             <template slot-scope="scope">
                 <el-button
                         size="mini"
-                        @click="handleDetail(scope.$index, scope.row)">详情</el-button>
+                        @click="handleDetail(scope.row)">详情</el-button>
                 <el-button
                         size="mini"
-                        @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                        @click="handleEdit(scope.row)">编辑</el-button>
                 <el-button
                         size="mini"
                         type="danger"
-                        @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                        @click="handleDelete(scope.row)">删除</el-button>
             </template>
         </el-table-column>
     </el-table>
@@ -83,25 +83,24 @@
             }
         },
         methods:{
-            handleDetail(){
-
+            handleDetail(item){
                 let data = {
                     type: this.type,
                     edit: false
                 }
                 this.$refs.detail.setTypeEdit(data)
+                this.$refs.detail.setData(item)
                 this.$refs.detail.setVisible()
 
 
             },
-            handleEdit(){
-
-
+            handleEdit(item){
                 let data = {
                     type: this.type,
                     edit: true   //可编辑
                 }
                 this.$refs.detail.setTypeEdit(data)
+                this.$refs.detail.setData(item)
                 this.$refs.detail.setVisible()
 
             },
