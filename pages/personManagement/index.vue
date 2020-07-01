@@ -2,6 +2,9 @@
     <div>
     <cli-title class="title"></cli-title>
     <cli-menu class="menu"></cli-menu>
+        <div class="center">
+
+        </div>
     </div>
 
 
