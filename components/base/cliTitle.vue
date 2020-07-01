@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div style="width: 100%;height: 70px;background-color: white;box-shadow: 262px 5px 5px #e2e2e2;">
         <img src="../../assets/image/text.png"
              style="width: 50%; margin-left: 10px; margin-top: 20px" alt="">
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal"
@@ -10,6 +11,7 @@
                 <el-menu-item index="1-3" @click="logOut">退出登入</el-menu-item>
             </el-submenu>
         </el-menu>
+        </div>
     </div>
 </template>
 
