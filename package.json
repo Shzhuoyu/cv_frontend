@@ -16,7 +16,7 @@
     "axios": "^0.19.0",
     "echarts": "^4.8.0",
     "element-ui": "2.12.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.4",
     "moment": "^2.19.4",
@@ -36,7 +36,7 @@
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-vue": "^4.0.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "popper.js": "^1.16.0",
     "script-loader": "^0.7.2",
     "vue-easytable": "^1.7.2"
