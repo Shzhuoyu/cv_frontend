@@ -5,16 +5,36 @@
             width="60%"
             center
     >
-        <el-form :model="form">
-            <el-form-item label="活动名称" label-width="600px">
-                <el-input v-model="form.name" autocomplete="off"></el-input>
+        <div style="margin: 20px;"></div>
+        <el-form :model="form"
+                 label-width="80px"
+                 label-position="labelPosition"
+
+        >
+
+            <el-form-item label="姓名" >
+                <el-input v-model="form.username" :disabled="!edit"></el-input>
             </el-form-item>
-            <el-form-item label="活动区域" label-width="70%">
-                <el-select v-if="false" v-model="form.region" placeholder="请选择活动区域">
-                    <el-option label="区域一" value="shanghai"></el-option>
-                    <el-option label="区域二" value="beijing"></el-option>
+
+            <el-form-item label="性别">
+                <el-select  v-model="form.gender" :disabled="!edit">
+                    <el-option label="男" value="男"></el-option>
+                    <el-option label="女" value="女"></el-option>
                 </el-select>
             </el-form-item>
+
+            <el-form-item label="身份证">
+                <el-input v-model="form.id_card" :disabled="!edit"></el-input>
+            </el-form-item>
+
+            <el-form-item label="出生日期">
+                <el-input v-model="form.birthday" :disabled="!edit"></el-input>
+            </el-form-item>
+
+            <el-form-item label="出生日期">
+                <el-input v-model="form.birthday" :disabled="!edit"></el-input>
+            </el-form-item>
+
         </el-form>
 
 
@@ -37,7 +57,14 @@
                 typeName:"",
                 edit:false,
                 centerDetailVisible: false,
-                form:{name:''}
+                form:{id: 1,
+                    ORG_ID: null,
+                    CLIENT_ID: null,
+                    username: "老人一号",
+                    gender: "",
+                    phone: "",
+                    id_card: "350181199912231111",
+                    birthday: null}
 
 
 
@@ -72,5 +99,14 @@
 </script>
 
 <style scoped>
+
+
+</style>
+<style>
+    .el-input.is-disabled .el-input__inner{
+        background-color: white;
+        font-weight: bold;
+        color: #777b83;
+    }
 
 </style>
