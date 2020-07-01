@@ -62,7 +62,8 @@
                         <template slot-scope="scope">
                             <el-tag
                                     :type="scope.row.tag === '摔倒' ? 'danger' : (scope.row.tag === '交互' ? 'success' : 'primary')"
-                                    disable-transitions>{{scope.row.tag}}</el-tag>
+                                    disable-transitions>{{scope.row.tag}}
+                            </el-tag>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -116,7 +117,8 @@
                         <template slot-scope="scope">
                             <el-tag
                                     :type="scope.row.tag === '禁止区域入侵' ? 'danger' : 'warning'"
-                                    disable-transitions>{{scope.row.tag}}</el-tag>
+                                    disable-transitions>{{scope.row.tag}}
+                            </el-tag>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -133,6 +135,7 @@
 <script>
     import CliTitle from "../../components/base/cliTitle";
     import CliMenu from "../../components/base/cliMenu";
+    import GET from "../../api";
 
     export default {
         name: "index",
@@ -140,49 +143,12 @@
         data() {
             return {
                 search: '',
-                tableData: [{
-                    ID: '0',
-                    date: '2020-07-01',
-                    name: '王小虎',
-                    address: '敬老院xxx房间',
-                    description: '老人微笑了',
-                    tag: '微笑'
-                }, {
-                    ID: '1',
-                    date: '2020-07-02',
-                    name: '王小虎',
-                    address: '敬老院xxx房间',
-                    description: '老人微笑了',
-                    tag: '微笑'
-                }, {
-                    ID: '2',
-                    date: '2020-07-02',
-                    name: '孙小虎',
-                    address: '敬老院xxx房间',
-                    description: '老人摔倒了',
-                    tag: '摔倒'
-                }, {
-                    ID: '3',
-                    date: '2020-07-02',
-                    name: '孙小虎',
-                    address: '敬老院xxx房间',
-                    description: '老人和义工交互了',
-                    tag: '交互'
-                }],
-                eventData: [{
-                    ID: '6',
-                    date: '2020-07-01',
-                    address: '敬老院xxx走廊',
-                    description: '禁止区域入侵',
-                    tag: '禁止区域入侵',
-                }, {
-                    ID: '5',
-                    date: '2020-07-01',
-                    address: '敬老院xxx房间',
-                    description: '陌生人来访',
-                    tag: '陌生人来访',
-                }],
+                tableData: [],
+                eventData: [],
             }
+        },
+        mounted() {
+            this.getEvents();
         },
         methods: {
             resetDateFilter() {
@@ -201,7 +167,39 @@
                 const property = column['property'];
                 return row[property] === value;
             },
-            eventShow(row, column, event){
+            getEvents() {
+                let data = {};
+                GET.eventList(data).then(res => {
+                    console.log(res);
+                    let len = res.length;
+                    console.log(len);
+                    this.tableData = [];
+                    this.eventData = [];
+                    for (let i = 0; i < len; i++) {
+                        if(res[i].event_type===0 || res[i].event_type===1 || res[i].event_type===3){
+                            let tmp={
+                                ID: res[i].id,
+                                date: res[i].event_date,
+                                name: res[i].oldperson_id.username,
+                                address: res[i].event_location,
+                                description: res[i].event_desc,
+                                tag: res[i].event_type === 0 ? '微笑' : (res[i].event_type === 1 ? '交互' : '摔倒'),
+                            };
+                            this.tableData.push(tmp);
+                        }else{
+                            let tmp={
+                                ID: res[i].id,
+                                date: res[i].event_date,
+                                address: res[i].event_location,
+                                description: res[i].event_desc,
+                                tag: res[i].event_type === 2 ? '陌生人来访' : '禁止区域入侵',
+                            };
+                            this.eventData.push(tmp);
+                        }
+                    }
+                })
+            },
+            eventShow(row, column, event) {
                 console.log(row, column, event);
                 // get Pic 事件ID为row.ID
             },
