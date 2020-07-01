@@ -3,6 +3,8 @@
     <cli-title class="title"></cli-title>
     <cli-menu class="menu"></cli-menu>
         <div class="center">
+            <el-button class="add_button" type="success" @click="handleAdd">
+                <i class="el-icon-circle-plus"></i>添加{{typeName}}</el-button>
             <el-tabs v-model="type" type="card" @tab-click="handleClick">
                 <el-tab-pane label="老人管理" name="0">
                     <person-list ref="oldList"></person-list>
@@ -13,8 +15,9 @@
                 <el-tab-pane label="义工管理" name="2">
                     <person-list ref="volList"></person-list>
                 </el-tab-pane>
-
             </el-tabs>
+            <person-detail ref="detail"></person-detail>
+
 
         </div>
     </div>
@@ -27,17 +30,28 @@
     import CliMenu from "../../components/base/cliMenu";
     import PersonList from "../../components/personManagement/personList";
     import GET from "../../api";
+    import PersonDetail from "../../components/personManagement/personDetail";
     export default {
         name: "index",
-        components: {PersonList, CliMenu, CliTitle},
+        components: {PersonDetail, PersonList, CliMenu, CliTitle},
         data(){
             return{
-                type:'0'
+                type:'0',
+                typeName:'老人',
             }
         },
         methods:{
             handleClick() {
                 console.log(this.type);
+                if (this.type == '0'){
+                    this.typeName= '老人';
+                }
+                else if (this.type == '1'){
+                    this.typeName = '员工';
+                }
+                else {
+                    this.typeName = "义工";
+                }
                 this.getData()
             },
             getData(){
@@ -67,6 +81,15 @@
 
                 }
             },
+            handleAdd(){
+                let data = {
+                    type: this.type,
+                    edit: true   //可编辑
+                }
+                this.$refs.detail.setTypeEdit(data)
+                this.$refs.detail.setAdd()
+                this.$refs.detail.setVisible()
+            }
         },
         mounted() {
             this.getData()
@@ -76,5 +99,13 @@
 
 <style scoped>
     @import "../../assets/css/page.css";
+    .add_button{
+        position: absolute;
+        right: 200px;
+        margin-right: 200px;
+        font-weight: bold;
+        /*margin-bottom: 100px;*/
+        z-index: 99999
+    }
 
 </style>

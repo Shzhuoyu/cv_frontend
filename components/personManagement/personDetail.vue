@@ -48,7 +48,7 @@
             </el-form-item>
 
             <el-form-item label="第一监护人姓名" >
-                <el-input v-model="form.firstguardian_namee" :disabled="!edit"></el-input>
+                <el-input v-model="form.firstguardian_name" :disabled="!edit"></el-input>
             </el-form-item>
 
             <el-form-item label="与第一监护人关系" >
@@ -115,8 +115,8 @@
   <span slot="footer" class="dialog-footer" v-if="edit">
       <el-button></el-button>
     <el-button style="position:absolute;left: 60px;bottom: 30px" @click="setHide">取 消</el-button>
-    <el-button v-if="!add"  style="position:absolute;right: 60px;bottom: 30px" type="primary" @click="setHide">更新</el-button>
-    <el-button v-if="add" style="position:absolute;right: 60px;bottom: 30px" type="primary" @click="setHide">添加</el-button>
+    <el-button v-if="!add"  style="position:absolute;right: 60px;bottom: 30px" type="primary" @click="sendEdit">更新</el-button>
+    <el-button v-if="add" style="position:absolute;right: 60px;bottom: 30px" type="primary" @click="sendAdd">添加</el-button>
   </span>
 
     </el-dialog>
@@ -124,6 +124,9 @@
 </template>
 
 <script>
+    import POST from "../../api/POST";
+    import PUT from "../../api/PUT";
+    import Cookies from "js-cookie"
     export default {
         name: "personDetail",
         data(){
@@ -139,10 +142,10 @@
                 form:{id: 1,
                     ORG_ID: null,
                     CLIENT_ID: null,
-                    username: "老人一号",
-                    gender: "男",
-                    phone: "18500300599",
-                    id_card: "350181199912231111",
+                    username: "",
+                    gender: "",
+                    phone: "",
+                    id_card: "",
                     checkin_date:'',
                     checkout_data:'',
                     birthday: null,
@@ -176,9 +179,20 @@
             setHide(){
                 this.centerDetailVisible = false
             },
-
             setData(data){
                 this.form = data
+            },
+            setAdd(){
+              this.add = true
+            },
+            sendEdit(){
+                let token = Cookies.get('token')
+
+
+            },
+            sendAdd(){
+                let token = Cookies.get('token')
+
             },
             setTypeEdit(data){ //设置 种类及
                 console.log(data)
