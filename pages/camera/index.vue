@@ -1,97 +1,92 @@
 <template>
-    <el-container>
-        <el-header>
-            <cli-title class="title"></cli-title>
-        </el-header>
-        <el-main>
-            <div class="menu">
-                <cli-menu></cli-menu>
-            </div>
-            <div class="center">
-                <div v-if="isRouterAlive">
-                    <el-row>
-                        <link href="https://vjs.zencdn.net/7.3.0/video-js.min.css" rel="stylesheet">
-                        <script src="https://vjs.zencdn.net/7.3.0/video.min.js"></script>
-                        <script src="https://cdn.jsdelivr.net/npm/videojs-flash@2/dist/videojs-flash.min.js"></script>
-                        <el-col style="width: 1000px;">
-                            <video id="liveVideo" class="video-js" controls autoplay preload="auto" width="960"
-                                   height="660" data-setup="{}">
-                                <source :src="mainSrc" type="rtmp/flv">
+    <div>
+        <cli-title class="title"></cli-title>
+        <div class="menu">
+            <cli-menu></cli-menu>
+        </div>
+        <div class="center">
+            <div v-if="isRouterAlive">
+                <el-row>
+                    <link href="https://vjs.zencdn.net/7.3.0/video-js.min.css" rel="stylesheet">
+                    <script src="https://vjs.zencdn.net/7.3.0/video.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/videojs-flash@2/dist/videojs-flash.min.js"></script>
+                    <el-col style="width: 1000px;">
+                        <video id="liveVideo" class="video-js" controls autoplay preload="auto" width="960"
+                               height="660" data-setup="{}">
+                            <source :src="mainSrc" type="rtmp/flv">
+                        </video>
+                        <div class="text">{{mainSrcName}}</div>
+                    </el-col>
+                    <el-col style="margin-left:20px; width: 300px;">
+                        <el-row>
+                            <video id="liveVideo1" class="video-js" controls autoplay preload="auto" width="300"
+                                   height="200" data-setup="{}">
+                                <source :src="Src1" type="rtmp/flv">
                             </video>
-                            <div class="text">{{mainSrcName}}</div>
-                        </el-col>
-                        <el-col style="margin-left:20px; width: 300px;">
-                            <el-row>
-                                <video id="liveVideo1" class="video-js" controls autoplay preload="auto" width="300"
-                                       height="200" data-setup="{}">
-                                    <source :src="Src1" type="rtmp/flv">
-                                </video>
-                            </el-row>
-                            <el-row class="subtext">
-                                <el-button type="text" @click="toMain(1)">{{Src1Name}}</el-button>
-                            </el-row>
-                            <el-row>
-                                <video id="liveVideo2" class="video-js" controls autoplay preload="auto" width="300"
-                                       height="200" data-setup="{}">
-                                    <source :src="Src2" type="rtmp/flv">
-                                </video>
-                            </el-row>
-                            <el-row class="subtext">
-                                <el-button type="text" @click="toMain(2)">{{Src2Name}}</el-button>
-                            </el-row>
-                            <el-row>
-                                <video id="liveVideo3" class="video-js" controls autoplay preload="auto" width="300"
-                                       height="200" data-setup="{}">
-                                    <source :src="Src3" type="rtmp/flv">
-                                </video>
-                            </el-row>
-                            <el-row class="subtext">
-                                <el-button type="text" @click="toMain(3)">{{Src3Name}}</el-button>
-                            </el-row>
-                        </el-col>
-                    </el-row>
-                </div>
-                <div style="margin-top: 30px"></div>
-                <div>
-                    <el-row style="margin-left:30px; width: 1200px" type="flex" justify="space-between">
-                        <el-col :span="15" class="card">
-                            <el-card>
-                                <el-row><img src="../../assets/image/elder.png" alt=""></el-row>
-                                <el-row><span class="text">老人数量</span></el-row>
-                                <el-row><span class="subtext">{{currentTime}}</span></el-row>
-                                <el-row><el-button type="text" class="num">{{elderNum}}</el-button></el-row>
-                            </el-card>
-                        </el-col>
-                        <el-col :span="15" class="card">
-                            <el-card>
-                                <el-row><img src="../../assets/image/people.png" alt=""></el-row>
-                                <el-row><span class="text">工作人员数量</span></el-row>
-                                <el-row><span class="subtext">{{currentTime}}</span></el-row>
-                                <el-row><el-button type="text" class="num">{{staffNum}}</el-button></el-row>
-                            </el-card>
-                        </el-col>
-                        <el-col :span="15" class="card">
-                            <el-card>
-                                <el-row><img src="../../assets/image/people.png" alt=""></el-row>
-                                <el-row><span class="text">义工数量</span></el-row>
-                                <el-row><span class="subtext">{{currentTime}}</span></el-row>
-                                <el-row><el-button type="text" class="num">{{volunteerNum}}</el-button></el-row>
-                            </el-card>
-                        </el-col>
-                        <el-col :span="15" class="card">
-                            <el-card>
-                                <el-row><img src="../../assets/image/stranger.png" alt=""></el-row>
-                                <el-row><span class="text">陌生人数量</span></el-row>
-                                <el-row><span class="subtext">{{currentTime}}</span></el-row>
-                                <el-row><el-button type="text" class="num">{{strangerNum}}</el-button></el-row>
-                            </el-card>
-                        </el-col>
-                    </el-row>
-                </div>
+                        </el-row>
+                        <el-row class="subtext">
+                            <el-button type="text" @click="toMain(1)">{{Src1Name}}</el-button>
+                        </el-row>
+                        <el-row>
+                            <video id="liveVideo2" class="video-js" controls autoplay preload="auto" width="300"
+                                   height="200" data-setup="{}">
+                                <source :src="Src2" type="rtmp/flv">
+                            </video>
+                        </el-row>
+                        <el-row class="subtext">
+                            <el-button type="text" @click="toMain(2)">{{Src2Name}}</el-button>
+                        </el-row>
+                        <el-row>
+                            <video id="liveVideo3" class="video-js" controls autoplay preload="auto" width="300"
+                                   height="200" data-setup="{}">
+                                <source :src="Src3" type="rtmp/flv">
+                            </video>
+                        </el-row>
+                        <el-row class="subtext">
+                            <el-button type="text" @click="toMain(3)">{{Src3Name}}</el-button>
+                        </el-row>
+                    </el-col>
+                </el-row>
             </div>
-        </el-main>
-        <el-footer></el-footer>
-    </el-container>
+            <div style="margin-top: 30px"></div>
+            <div>
+                <el-row style="margin-left:30px; width: 1200px" type="flex" justify="space-between">
+                    <el-col :span="15" class="card">
+                        <el-card>
+                            <el-row><img src="../../assets/image/elder.png" alt=""></el-row>
+                            <el-row><span class="text">老人数量</span></el-row>
+                            <el-row><span class="subtext">{{currentTime}}</span></el-row>
+                            <el-row><el-button type="text" class="num">{{elderNum}}</el-button></el-row>
+                        </el-card>
+                    </el-col>
+                    <el-col :span="15" class="card">
+                        <el-card>
+                            <el-row><img src="../../assets/image/people.png" alt=""></el-row>
+                            <el-row><span class="text">工作人员数量</span></el-row>
+                            <el-row><span class="subtext">{{currentTime}}</span></el-row>
+                            <el-row><el-button type="text" class="num">{{staffNum}}</el-button></el-row>
+                        </el-card>
+                    </el-col>
+                    <el-col :span="15" class="card">
+                        <el-card>
+                            <el-row><img src="../../assets/image/people.png" alt=""></el-row>
+                            <el-row><span class="text">义工数量</span></el-row>
+                            <el-row><span class="subtext">{{currentTime}}</span></el-row>
+                            <el-row><el-button type="text" class="num">{{volunteerNum}}</el-button></el-row>
+                        </el-card>
+                    </el-col>
+                    <el-col :span="15" class="card">
+                        <el-card>
+                            <el-row><img src="../../assets/image/stranger.png" alt=""></el-row>
+                            <el-row><span class="text">陌生人数量</span></el-row>
+                            <el-row><span class="subtext">{{currentTime}}</span></el-row>
+                            <el-row><el-button type="text" class="num">{{strangerNum}}</el-button></el-row>
+                        </el-card>
+                    </el-col>
+                </el-row>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
