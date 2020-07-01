@@ -31,7 +31,7 @@
                 <el-input v-model="form.birthday" :disabled="!edit"></el-input>
             </el-form-item>
 
-            <el-form-item label="出生日期">
+            <el-form-item label="出生日期">  
                 <el-input v-model="form.birthday" :disabled="!edit"></el-input>
             </el-form-item>
 
