@@ -1,11 +1,3 @@
-<!--
- * @Author: 刘霁雯
- * @Date: 2019-12-01 21:56:01
- * @LastEditTime: 2019-12-04 15:13:24
- * @LastEditors: Please set LastEditors
- * @Description: 登陆
- * @FilePath: \taodongdong\pages\pro.vue
- -->
 <template style="overflow-y: hidden; overflow-x:hidden">
   <div class="loginWrapper">
     <div class="back-ground" style="overflow-y: hidden; z-index: -1">
@@ -95,120 +87,24 @@
                      round >注册</el-button>
         </div>
       </div>
-
-      <!--图标-->
-      <div style="margin-top:10%;background-color: #ffffff">
-        <!--店铺图标-->
-        <div style="float: left;margin-left: 20%;margin-top:5%;width:200px;height:200px;border-radius: 50%;border: solid 1px #c4c4c4">
-          <div style="margin-left: 36px;margin-top:25px;width:128px;height:128px" @click="login()">
-            <img src="../assets/image/store.png">
-            <div style="margin-left: 36px;background-color: black;height: 3px;width: 55px"></div>
-          </div>
-        </div>
-        <!--用户图标-->
-        <div style="float: right;margin-right: 20%;margin-top:5%;width:200px;height:200px;border-radius: 50%;border: solid 1px #070707">
-          <div style="margin-left: 36px;margin-top:25px;width:128px;height:128px" @click="login()">
-            <img src="../assets/image/buy.png">
-            <div style="margin-left: 36px;background-color: black;height: 3px;width: 55px"></div>
-          </div>
-        </div>
-      </div>
-      <!--图标文字-->
-      <div style="margin-top:0;background-color: #ffffff">
-        <!--店铺文字-->
-        <div style="float: left;margin-left: 23%;margin-top:2%">
-           <span style="font-size: 31px;color: #424242">随心开店</span>
-        </div>
-        <!--用户文字-->
-        <div style="float: right;margin-right: 23%;margin-top:2%;margin-bottom: 5%">
-           <span style="font-size: 31px;color: #424242">随性购物</span>
-        </div>
-      </div>
-      <div style="height: 2px">
-        <el-divider></el-divider>
-      </div>
-
-      <!--经销商-->
-      <div style="margin-top:0;background-color:#ffffff">
-        <!--店铺图标-->
-        <div style="float: left;margin-left: 10%;margin-top:5%;margin-bottom: 5%">
-          <el-card style="border-radius: 30px" shadow="always">
-             <img src="../assets/image/s1.jpg">
-          </el-card>
-        </div>
-        <!--用户图标-->
-        <div style="float: right;margin-right: 30%;margin-top:10%">
-          <span style="font-size: 40px;letter-spacing:15px;">随心开店</span>
-          <div style="margin-top: 3%">
-            <span style="color:#c2c2c2;font-size: 20px;letter-spacing:15px">开个自己的小店</span>
-          </div>
-          <div style="margin-top: 3%">
-            <span style="color:#c2c2c2;font-size: 20px;letter-spacing:15px">让生活换个‘资’态</span>
-          </div>
-          <div style="margin-top: 6%;letter-spacing:10px">
-            <el-button style="letter-spacing:7px" type="text" @click="login()">了解更多></el-button>
-          </div>
-        </div>
-      </div>
-      <div style="height: 2px">
-        <el-divider></el-divider>
-      </div>
-
-      <!--消费者-->
-      <div style="margin-top:0;background-color: #ffffff">
-        <!--店铺图标-->
-        <div style="float: right;margin-right: 10%;margin-top:5%;margin-bottom: 5%">
-          <el-card style="border-radius: 30px" shadow="hover">
-            <img src="../assets/image/c.jpg">
-          </el-card>
-        </div>
-        <!--用户图标-->
-        <div style="float: left;margin-left: 20%;margin-top:10%">
-          <span style="font-size: 40px;letter-spacing:15px;">随性购物</span>
-          <div style="margin-top: 3%">
-            <span style="color:#c2c2c2;font-size: 20px;letter-spacing:15px">千万好货</span>
-          </div>
-          <div style="margin-top: 3%">
-            <span style="color:#c2c2c2;font-size: 20px;letter-spacing:15px">满足你的多彩生活</span>
-          </div>
-          <div style="margin-top: 6%">
-            <el-button style="letter-spacing:7px" type="text" @click="login()">了解更多></el-button>
-          </div>
-        </div>
-      </div>
-
-      <!--底部-->
-      <div style="margin-top:0;background-color: rgba(45,51,52,0.69)">
-        <!--logo-->
-        <div style="float: left;margin-left: 10%;margin-top:5%">
-          <div style="float: left">
-            <img src="../assets/image/buy.png">
-          </div>
-          <div style="float: right;margin-top: 12%">
-            <span style="color: #ffffff;font-size: 15px">Copyright©2019 TAODD 淘东东项目组 版权所有</span>
-          </div>
-        </div>
-        <!--二维码-->
-        <div style="float: right;margin-right: 20%;margin-top:6%;margin-bottom: 5%">
-          <div style="float: top">
-            <img src="../assets/image/us.jpg">
-          </div>
-          <div style="float: bottom;margin-left: 8%">
-            <span style="color: #ffffff">微信服务号</span>
-          </div>
-        </div>
-      </div>
     </el-container>
     <div style="position: absolute; height: 2rem; bottom: 2rem">
     </div>
+    <login-window ref="login"></login-window>
+    <signup-window ref="signup"> </signup-window>
+
   </div>
 </template>
 
 <script>
 import upload from '~/components/base/cliUpload.vue'
 import SvgIcon from "../components/SvgIcon/index";
+import SignupWindow from "../components/base/signupWindow";
+import LoginWindow from "../components/base/loginWindow";
 export default {
   components: {
+    LoginWindow,
+    SignupWindow,
     SvgIcon,
     upload
   },
@@ -220,10 +116,13 @@ export default {
 
   methods: {
     login () {
-      this.$router.push({path: `/login`})
+      this.$refs.login.setVisible()
+
     },
     register () {
-      this.$router.push({path: `/register`})
+      console.log('212')
+      this.$refs.signup.setVisible()
+      // this.$router.push({path: `/register`})
     }
   }
 }

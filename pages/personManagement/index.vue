@@ -105,7 +105,7 @@
         margin-right: 200px;
         font-weight: bold;
         /*margin-bottom: 100px;*/
-        z-index: 99999
+        z-index: 20
     }
 
 </style>

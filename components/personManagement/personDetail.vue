@@ -33,11 +33,11 @@
 
 
             <el-form-item :label="checkInName">
-                <el-input v-model="form.birthday" :disabled="!edit"></el-input>
+                <el-input v-model="form.checkin_date" :disabled="!edit"></el-input>
             </el-form-item>
 
             <el-form-item :label="checkOutName">
-                <el-input v-model="form.checkin_date" :disabled="!edit"></el-input>
+                <el-input v-model="form.checkout_date" :disabled="!edit"></el-input>
             </el-form-item>
 
 <!--            老人特有-->
@@ -183,10 +183,40 @@
                 this.form = data
             },
             setAdd(){
-              this.add = true
+              this.add = true;
+              this.title = '添加'+this.typeName
             },
             sendEdit(){
                 let token = Cookies.get('token')
+                this.form['token'] = token
+                if (this.type == '0'){
+                    PUT.oldPersonDetail(this.form).then(res=>{
+                        this.$notify({
+                            title: '提示',
+                            message: '更新成功',
+                        });
+                        this.edit = false
+
+                    })
+                }
+                else if (this.type == '1'){
+                    PUT.employeeDetail(this.form).then(res=>{
+                        this.$notify({
+                            title: '提示',
+                            message: '更新成功',
+                        });
+                        this.edit = false
+                    })
+                }
+                else {
+                    PUT.volunteerDetail(this.form).then(res=>{
+                        this.$notify({
+                            title: '提示',
+                            message: '更新成功',
+                        });
+                        this.edit = false
+                    })
+                }
 
 
             },
