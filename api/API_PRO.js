@@ -32,9 +32,15 @@ export default {
 
   volunteerList:{url:'person/volunteerList'},
   volunteerDetail:{url:'person/volunteerDetail'},
+
+  /**
+   * 实时事件
+   */
   eventList:{url:'event/list'},
 
-
-
+  /**
+   * 统计报表
+   */
+  peopleCount:{url:'/statistics/all'},
 
 }
