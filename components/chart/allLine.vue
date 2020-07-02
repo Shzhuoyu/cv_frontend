@@ -7,13 +7,14 @@
 <script>
     import echarts from 'echarts';
     import Vue from 'vue'
+
     Vue.prototype.$echarts = echarts;
 
     export default {
         name: "allLine",
         data() {
-            return{
-                allEvent:[
+            return {
+                allEvent: [
                     // ['07-01', 3, 2, 4, 6, 6],
                     // ['07-02', 4, 2, 6, 8, 2],
                     // ['07-03', 12, 24, 5, 6, 2, 6],
@@ -71,8 +72,12 @@
                 myChart1.setOption(option);
             },
             setData(data) {
-                console.log(data);
-                this.allEvent = data;
+                let tmp = data.concat();
+                for (let i = 0; i < 7; i++) {
+                    tmp[i] = data[6-i];
+                }
+                console.log(tmp);
+                this.allEvent = tmp;
                 this.myEcharts1();
             }
         }
