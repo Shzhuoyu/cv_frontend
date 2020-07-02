@@ -14,7 +14,8 @@ export default {
    * 基本
    */
   login:{url:'login'},
-   signUp:{url:'account'},
+  signUp:{url:'account'},
+  setInfo:{url:'base/sysInfo'},
 
   /**
    * 人员管理
