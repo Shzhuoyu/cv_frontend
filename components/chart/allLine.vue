@@ -1,5 +1,7 @@
 <template>
-    <el-card class="charts"><div id="allLine" style="width: 600px;height:400px;"></div></el-card>
+    <el-card class="charts">
+        <div id="allLine" style="width: 600px;height:400px;"></div>
+    </el-card>
 </template>
 
 <script>
@@ -12,13 +14,13 @@
         data() {
             return{
                 allEvent:[
-                    ['07-01', 3, 2, 4, 6, 6],
-                    ['07-02', 4, 2, 6, 8, 2],
-                    ['07-03', 12, 24, 5, 6, 2, 6],
-                    ['07-04', 8, 3, 5, 7, 2],
-                    ['07-05', 4, 3, 5, 7, 2],
-                    ['07-06', 8, 2, 4, 6, 7],
-                    ['07-07', 12, 2, 4, 7, 2],
+                    // ['07-01', 3, 2, 4, 6, 6],
+                    // ['07-02', 4, 2, 6, 8, 2],
+                    // ['07-03', 12, 24, 5, 6, 2, 6],
+                    // ['07-04', 8, 3, 5, 7, 2],
+                    // ['07-05', 4, 3, 5, 7, 2],
+                    // ['07-06', 8, 2, 4, 6, 7],
+                    // ['07-07', 12, 2, 4, 7, 2],
                 ],
             }
         },
@@ -32,7 +34,7 @@
                 // 指定图表的配置项和数据
                 var option = {
                     title: {
-                        text: '事件总览',
+                        text: '周事件趋势',
                     },
                     tooltip: {},
                     legend: {
@@ -44,24 +46,34 @@
                         source: this.allEvent
                     },
                     series: [{
-                        name: '摔倒',
+                        name: '老人微笑',
                         type: 'line',
                         encode: {x: 0, y: 1},
                     }, {
-                        name: '微笑',
+                        name: '老人互动',
                         type: 'line',
                         encode: {x: 0, y: 2},
                     }, {
-                        name: '互动',
+                        name: '陌生人来访',
                         type: 'line',
                         encode: {x: 0, y: 3},
+                    }, {
+                        name: '老人摔倒',
+                        type: 'line',
+                        encode: {x: 0, y: 4},
+                    }, {
+                        name: '禁区入侵',
+                        type: 'line',
+                        encode: {x: 0, y: 5},
                     }]
                 };
                 // 使用刚指定的配置项和数据显示图表。
                 myChart1.setOption(option);
             },
             setData(data) {
+                console.log(data);
                 this.allEvent = data;
+                this.myEcharts1();
             }
         }
     }

@@ -13,28 +13,42 @@
                     <el-col :span="15" class="card">
                         <el-row><img src="../../assets/image/elder.png" alt=""></el-row>
                         <el-row><span class="subtext">老人数量</span></el-row>
-                        <el-row><el-button type="text" class="num">{{elderNum}}</el-button></el-row>
+                        <el-row>
+                            <el-button type="text" class="text">{{elderNum}}</el-button>
+                        </el-row>
                     </el-col>
                     <el-col :span="15" class="card">
                         <el-row><img src="../../assets/image/people.png" alt=""></el-row>
                         <el-row><span class="subtext">工作人员数量</span></el-row>
-                        <el-row><el-button type="text" class="num">{{staffNum}}</el-button></el-row>
+                        <el-row>
+                            <el-button type="text" class="text">{{staffNum}}</el-button>
+                        </el-row>
                     </el-col>
                     <el-col :span="15" class="card">
                         <el-row><img src="../../assets/image/people.png" alt=""></el-row>
                         <el-row><span class="subtext">义工数量</span></el-row>
-                        <el-row><el-button type="text" class="num">{{volunteerNum}}</el-button></el-row>
+                        <el-row>
+                            <el-button type="text" class="text">{{volunteerNum}}</el-button>
+                        </el-row>
                     </el-col>
                 </el-row>
             </div>
             <div class="Echarts">
                 <el-row style="margin-left:50px; width: 1200px" type="flex" justify="space-between">
-                    <el-col><all-pie ref="allPie"></all-pie></el-col>
-                    <el-col><all-line ref="allLine"></all-line></el-col>
+                    <el-col>
+                        <all-pie ref="allPieRef"></all-pie>
+                    </el-col>
+                    <el-col>
+                        <all-line ref="allLineRef"></all-line>
+                    </el-col>
                 </el-row>
                 <el-row style="margin-left:50px; width: 1200px" type="flex" justify="space-between">
-                    <el-col><interaction ref="interaction"></interaction></el-col>
-                    <el-col><smile ref="smile"></smile></el-col>
+                    <el-col>
+                        <interaction ref="interaction"></interaction>
+                    </el-col>
+                    <el-col>
+                        <smile ref="smile"></smile>
+                    </el-col>
                 </el-row>
             </div>
         </div>
@@ -56,11 +70,11 @@
 
     export default {
         name: "index",
-        components: {allLine, CliTitle, CliMenu, allPie,interaction,smile},
+        components: {allLine, CliTitle, CliMenu, allPie, interaction, smile},
         data() {
             return {
                 elderNum: 0,
-                staffNum:0,
+                staffNum: 0,
                 volunteerNum: 0,
                 allEventNum: '0',
             }
@@ -74,10 +88,25 @@
                 let data = {};
                 GET.peopleCount(data).then(res => {
                     console.log(res);
+                    this.elderNum = res.old;
+                    this.staffNum = res.employee;
+                    this.volunteerNum = res.volunteer;
                 })
             },
-            getData(){
-                // this.$refs.allPie.setData(allPieData);
+            getData() {
+                let data = {};
+                GET.eventCount(data).then(res => {
+                    console.log(res);
+                    this.$refs.allLineRef.setData(res);
+
+                    let allPieData = [0, 0, 0, 0, 0];
+                    for (let i = 0; i < 5; i++) {
+                        for (let j = 0; i < 7; i++) {
+                            allPieData[i] += res[j][i+1];
+                        }
+                    }
+                    this.$refs.allPieRef.setData(allPieData);
+                })
             }
         }
     }
@@ -85,9 +114,10 @@
 
 <style scoped>
     @import "../../assets/css/page.css";
-    .charts{
+
+    .charts {
         width: 600px;
-        height:400px;
+        height: 400px;
         margin-left: 10px;
         margin-right: 10px;
         margin-bottom: 30px;

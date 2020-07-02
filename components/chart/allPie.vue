@@ -14,11 +14,12 @@
         name: "allPie",
         data() {
             return {
-                allEventCount: [['老人摔倒', 21],
-                    ['老人微笑', 34],
-                    ['老人互动', 24],
-                    ['陌生人来访', 12],
-                    ['禁区入侵', 4],],
+                allEventCount: [['老人微信', 0],
+                    ['老人互动', 0],
+                    ['陌生人来访', 0],
+                    ['老人摔倒', 0],
+                    ['禁区入侵', 0],],
+                allCount: 0,
             }
         },
         mounted() {
@@ -61,7 +62,7 @@
                                 left: "center",
                                 position: [0, 10],
                                 style: {
-                                    text: this.allEventNum,
+                                    text: this.allCount,
                                     textAlign: "center",
                                     textVerticaAlign: "middle",
                                     fill: "#3d383a",
@@ -106,7 +107,11 @@
                 myChart2.setOption(option);
             },
             setData(data) {
-                this.allEventCount = data;
+                for(let i=0;i<5;i++){
+                    this.allEventCount[i][1] = data[i];
+                    this.allCount += data[i];
+                }
+                this.myEcharts2();
             }
         }
     }

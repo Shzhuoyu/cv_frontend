@@ -38,5 +38,5 @@ export default {
    * 统计报表
    */
   peopleCount:{url:'/statistics/all'},
-
+  eventCount:{url:'/statistics/dailyEvent'},
 }
