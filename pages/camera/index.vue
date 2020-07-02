@@ -19,7 +19,7 @@
                     </el-col>
                     <el-col style="margin-left:20px; width: 300px;">
                         <el-row>
-                            <video id="liveVideo1" class="video-js" controls autoplay preload="auto" width="300"
+                            <video id="liveVideo1" class="video-js" controls autoplay muted preload="auto" width="300"
                                    height="200" data-setup="{}">
                                 <source :src="Src1" type="rtmp/flv">
                             </video>
@@ -28,7 +28,7 @@
                             <el-button type="text" @click="toMain(1)">{{Src1Name}}</el-button>
                         </el-row>
                         <el-row>
-                            <video id="liveVideo2" class="video-js" controls autoplay preload="auto" width="300"
+                            <video id="liveVideo2" class="video-js" controls autoplay muted preload="auto" width="300"
                                    height="200" data-setup="{}">
                                 <source :src="Src2" type="rtmp/flv">
                             </video>
@@ -37,7 +37,7 @@
                             <el-button type="text" @click="toMain(2)">{{Src2Name}}</el-button>
                         </el-row>
                         <el-row>
-                            <video id="liveVideo3" class="video-js" controls autoplay preload="auto" width="300"
+                            <video id="liveVideo3" class="video-js" controls autoplay muted preload="auto" width="300"
                                    height="200" data-setup="{}">
                                 <source :src="Src3" type="rtmp/flv">
                             </video>
@@ -98,7 +98,8 @@
         components: {CliTitle, CliMenu},
         data() {
             return {
-                mainSrc: "rtmp://39.97.124.237:1984/wodelive/",
+                // mainSrc: "rtmp://39.97.124.237:1984/wodelive/",
+                mainSrc: 'rtmp://202.69.69.180:443/webcast/bshdlive-pc',
                 Src1: "",
                 Src2: "",
                 Src3: "",
