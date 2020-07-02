@@ -9,18 +9,12 @@ export default {
 
 
   method: 'post',
-  /**
-   * 首页
-   */
-  food:{url:'food'},
-  electronic:{url:'electronic'},
-  life:{url:'life'},
-  cloth:{url:'cloth'},
 
   /**
    * 基本
    */
   login:{url:'login'},
+   signUp:{url:'account'},
 
   /**
    * 人员管理
