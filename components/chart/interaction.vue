@@ -1,6 +1,6 @@
 <template>
     <el-card class="charts">
-        <div id="fallBar" style="width: 600px;height:400px;"></div>
+        <div id="interactionBar" style="width: 600px;height:400px;"></div>
     </el-card>
 </template>
 
@@ -11,10 +11,10 @@
     Vue.prototype.$echarts = echarts;
 
     export default {
-        name: "fall",
+        name: "interaction",
         data() {
             return {
-                fellCount: [
+                interactionCount: [
                     ['王小林', 10],
                     ['孙小林', 7],
                     ['林子君', 5],
@@ -29,16 +29,16 @@
         methods: {
             myEcharts3() {
                 // 基于准备好的dom，初始化echarts实例
-                var myChart3 = this.$echarts.init(document.getElementById('fallBar'));
+                var myChart3 = this.$echarts.init(document.getElementById('interactionBar'));
                 // 指定图表的配置项和数据
                 var option = {
                     title: {
-                        text: '摔倒排行',
+                        text: '交互排行',
                     },
                     xAxis: {type: 'category'},
                     yAxis: {},
                     dataset: {
-                        source: this.fellCount
+                        source: this.interactionCount
                     },
                     series: [{
                         name: '摔倒',
@@ -50,7 +50,7 @@
                 myChart3.setOption(option);
             },
             setData(data) {
-                this.fellCount = data;
+                this.interactionCount = data;
             }
         }
     }

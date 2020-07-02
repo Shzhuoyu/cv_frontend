@@ -33,7 +33,7 @@
                     <el-col><all-line ref="allLine"></all-line></el-col>
                 </el-row>
                 <el-row style="margin-left:50px; width: 1200px" type="flex" justify="space-between">
-                    <el-col><fall ref="fall"></fall></el-col>
+                    <el-col><interaction ref="interaction"></interaction></el-col>
                     <el-col><smile ref="smile"></smile></el-col>
                 </el-row>
             </div>
@@ -46,7 +46,7 @@
     import CliMenu from "../../components/base/cliMenu";
     import allPie from "../../components/chart/allPie";
     import allLine from "../../components/chart/allLine";
-    import fall from "../../components/chart/fall";
+    import interaction from "../../components/chart/interaction";
     import smile from "../../components/chart/smile";
     import echarts from 'echarts';
     import Vue from 'vue'
@@ -56,7 +56,7 @@
 
     export default {
         name: "index",
-        components: {allLine, CliTitle, CliMenu, allPie,fall,smile},
+        components: {allLine, CliTitle, CliMenu, allPie,interaction,smile},
         data() {
             return {
                 elderNum: 0,
