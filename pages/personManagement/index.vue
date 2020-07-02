@@ -7,16 +7,16 @@
                 <i class="el-icon-circle-plus"></i>添加{{typeName}}</el-button>
             <el-tabs v-model="type" type="card" @tab-click="handleClick">
                 <el-tab-pane label="老人管理" name="0">
-                    <person-list ref="oldList"></person-list>
+                    <person-list ref="oldList" @getData="getData"></person-list>
                 </el-tab-pane>
                 <el-tab-pane  label="工作人员" name="1">
-                    <person-list ref="employList"></person-list>
+                    <person-list ref="employList" @getData="getData"></person-list>
                 </el-tab-pane>
                 <el-tab-pane label="义工管理" name="2">
-                    <person-list ref="volList"></person-list>
+                    <person-list ref="volList" @getData="getData"></person-list>
                 </el-tab-pane>
             </el-tabs>
-            <person-detail ref="detail"></person-detail>
+            <person-detail ref="detail" ></person-detail>
 
 
         </div>
@@ -89,7 +89,7 @@
                 this.$refs.detail.setTypeEdit(data)
                 this.$refs.detail.setAdd()
                 this.$refs.detail.setVisible()
-            }
+            },
         },
         mounted() {
             this.getData()

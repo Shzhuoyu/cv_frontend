@@ -94,16 +94,16 @@
                 <el-input v-model="form.ISACTIVE" :disabled="!edit"></el-input>
             </el-form-item>
             <el-form-item label="创建时间">
-                <el-input v-model="form.CREATED" disabled="false"></el-input>
+                <el-input v-model="form.CREATED" :disabled="false"></el-input>
             </el-form-item>
             <el-form-item label="创建人">
-                <el-input v-model="form.CREATEBY" disabled="false"></el-input>
+                <el-input v-model="form.CREATEBY" :disabled="false"></el-input>
             </el-form-item>
             <el-form-item label="更新时间">
-                <el-input v-model="form.UPDATED" disabled="false"></el-input>
+                <el-input v-model="form.UPDATED" :disabled="false"></el-input>
             </el-form-item>
             <el-form-item label="更新人">
-                <el-input v-model="form.UPDATEBY" disabled="false"></el-input>
+                <el-input v-model="form.UPDATEBY" :disabled="false"></el-input>
             </el-form-item>
             <el-form-item label="删除标志">
                 <el-input v-model="form.REMOVE" :disabled="!edit"></el-input>
@@ -127,6 +127,7 @@
     import POST from "../../api/POST";
     import PUT from "../../api/PUT";
     import Cookies from "js-cookie"
+    import pro from "../../pages/pro";
     export default {
         name: "personDetail",
         data(){
@@ -186,7 +187,17 @@
               this.add = true;
               this.title = '添加'+this.typeName
             },
+            fresh(){
+                this.$parent.getFuckingData();
+            },
             sendEdit(){
+                for (let prop in this.form)
+                {
+                    if (this.form[prop] == null||this.form[prop] == ''){
+                        delete this.form[prop]
+                    }
+
+                }
                 let token = Cookies.get('token')
                 this.form['token'] = token
                 if (this.type == '0'){
@@ -195,7 +206,9 @@
                             title: '提示',
                             message: '更新成功',
                         });
-                        this.edit = false
+                        this.edit = false;
+                        this.fresh()
+
 
                     })
                 }
@@ -205,7 +218,8 @@
                             title: '提示',
                             message: '更新成功',
                         });
-                        this.edit = false
+                        this.edit = false;
+                        this.fresh()
                     })
                 }
                 else {
@@ -214,14 +228,55 @@
                             title: '提示',
                             message: '更新成功',
                         });
-                        this.edit = false
+                        this.edit = false;
+                        this.fresh()
                     })
                 }
 
 
             },
             sendAdd(){
-                let token = Cookies.get('token')
+                // let token = Cookies.get('token')
+                // this.form['token'] = token
+                for (let prop in this.form)
+                {
+                    if (this.form[prop] == null||this.form[prop] == ''){
+                        delete this.form[prop]
+                    }
+
+                }
+                if (this.type == '0'){
+                    POST.oldPersonList(this.form).then(res=>{
+                        this.$notify({
+                            title: '提示',
+                            message: '添加成功',
+                        });
+                        this.edit = false;
+                        this.$parent.getData();
+
+                    })
+                }
+                else if (this.type == '1'){
+                    POST.employeeList(this.form).then(res=>{
+                        this.$notify({
+                            title: '提示',
+                            message: '添加成功',
+                        });
+                        this.edit = false;
+                        this.$parent.getData();
+                    })
+                }
+                else {
+                    POST.volunteerList(this.form).then(res=>{
+                        this.$notify({
+                            title: '提示',
+                            message: '添加成功',
+                        });
+                        this.edit = false;
+                        this.$parent.getData();
+                    })
+                }
+
 
             },
             setTypeEdit(data){ //设置 种类及

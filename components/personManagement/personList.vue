@@ -70,7 +70,15 @@
 
 <script>
     import PersonDetail from "./personDetail";
+    import DELETE from "../../api/DELETE";
+    import Cookies from "js-cookie";
     export default {
+        // props:{
+        //   getData:{
+        //       type:Function,
+        //       default:null
+        //   }
+        // },
         name: "personList",
         components: {PersonDetail},
         data(){
@@ -104,15 +112,51 @@
                 this.$refs.detail.setVisible()
 
             },
-            handleDelete(){
-
-            },
             setData(data){
                 this.tableData = data
                 console.log(this.tableData)
             },
             setType(type){
                 this.type = type
+            },
+            handleDelete(item){
+                let data = {
+                    token:Cookies.get('token'),
+                    id:item.id
+                }
+                if (this.type == '0'){
+                    DELETE.oldPersonDetail(data).then(res=>{
+                        this.$notify({
+                            title: '提示',
+                            message: '删除成功',
+                        });
+                        this.$emit('getData');
+
+                    })
+                }
+                else if (this.type == '1'){
+                    DELETE.employeeDetail(data).then(res=>{
+                        this.$notify({
+                            title: '提示',
+                            message: '删除成功',
+                        });
+                        this.$emit('getData');
+                    })
+                }
+                else {
+                    DELETE.volunteerDetail(data).then(res=>{
+                        this.$notify({
+                            title: '提示',
+                            message: '删除成功',
+                        });
+                        this.$emit('getData');
+                    })
+                }
+
+            },
+            getFuckingData(){
+                this.$emit('getData');
+
             }
 
         }
