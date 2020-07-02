@@ -2,7 +2,7 @@
     <div>
         <cli-title class="title"></cli-title>
         <div class="menu">
-            <cli-menu></cli-menu>
+            <cli-menu page-index="3"></cli-menu>
         </div>
         <div class="center">
             <div>

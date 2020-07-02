@@ -243,7 +243,6 @@
                     if (this.form[prop] == null||this.form[prop] == ''){
                         delete this.form[prop]
                     }
-
                 }
                 if (this.type == '0'){
                     POST.oldPersonList(this.form).then(res=>{
@@ -253,7 +252,6 @@
                         });
                         this.edit = false;
                         this.$parent.getData();
-
                     })
                 }
                 else if (this.type == '1'){
@@ -299,9 +297,7 @@
                     this.checkInName = '访问日期';
                     this.checkOutName = '离开日期';
                 }
-
                 console.log(this.typeName)
-
                 if (this.edit == true){
                     this.title = this.typeName+"编辑"
                 }else {

@@ -1,20 +1,25 @@
 <template>
     <div>
     <cli-title class="title"></cli-title>
-    <cli-menu class="menu"></cli-menu>
+    <cli-menu class="menu" page-index="2"></cli-menu>
         <div class="center">
             <el-button class="add_button" type="success" @click="handleAdd">
                 <i class="el-icon-circle-plus"></i>添加{{typeName}}</el-button>
+
             <el-tabs v-model="type" type="card" @tab-click="handleClick">
+
                 <el-tab-pane label="老人管理" name="0">
                     <person-list ref="oldList" @getData="getData"></person-list>
                 </el-tab-pane>
+
                 <el-tab-pane  label="工作人员" name="1">
                     <person-list ref="employList" @getData="getData"></person-list>
                 </el-tab-pane>
+
                 <el-tab-pane label="义工管理" name="2">
                     <person-list ref="volList" @getData="getData"></person-list>
                 </el-tab-pane>
+
             </el-tabs>
             <person-detail ref="detail" ></person-detail>
 
@@ -60,25 +65,20 @@
                         this.$refs.oldList.setData(res)
                         this.$refs.oldList.setType(this.type)
                     })
-
                 }
                 else if (this.type == '1'){
                     console.log('我佛了')
                     GET.employeeList().then(res=>{
                         this.$refs.employList.setData(res);
                         this.$refs.employList.setType(this.type)
-
                     })
-
                 }
                 else if (this.type == '2'){
                     console.log('我傻了')
                     GET.volunteerList().then(res=>{
                         this.$refs.volList.setData(res);
                         this.$refs.volList.setType(this.type)
-
                     })
-
                 }
             },
             handleAdd(){

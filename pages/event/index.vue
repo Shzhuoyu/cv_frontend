@@ -1,6 +1,6 @@
 <template>
     <div>
-        <cli-title class="title"></cli-title>
+        <cli-title class="title" page-index="4"></cli-title>
         <div class="menu">
             <cli-menu></cli-menu>
         </div>

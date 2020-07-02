@@ -5,7 +5,7 @@
                  style="width: 80%;" alt="">
         </div>
         <el-menu
-                default-active="1"
+                :default-active="pageIndex"
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
                 @close="handleClose"
@@ -36,6 +36,17 @@
 <script>
     export default {
         name: "cliMenu",
+        props:{
+            pageIndex:{
+                type:String
+            }
+        },
+        data(){
+            return{
+
+            }
+        },
+
         methods: {
             handleOpen(key, keyPath) {
                 console.log(key, keyPath);
