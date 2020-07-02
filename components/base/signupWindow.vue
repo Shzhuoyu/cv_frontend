@@ -29,7 +29,8 @@
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button style="position:absolute;left: 300px;bottom: 30px" @click="setHide">取 消</el-button>
-                <el-button style="position:absolute;right: 300px;bottom: 30px" type="primary" @click="signUp">注册</el-button>
+                <el-button style="position:absolute;right: 300px;bottom: 30px" type="primary"
+                           @click="signUp">注册</el-button>
             </span>
         </div>
 
@@ -77,6 +78,7 @@
 <script>
     import POST from "../../api/POST";
     import PUT from "../../api/PUT";
+    import Cookies from "js-cookie";
 
     export default {
         name: "signupWindow",
@@ -196,6 +198,10 @@
                             type: 'success',
                             message: '个人信息已录入'
                         });
+                        let info = {
+                            username: this.form.username,
+                        };
+                        Cookies.set('info', info);
                         this.$router.push({path: `/camera`});
                     } else {
                         this.$message({
@@ -219,7 +225,8 @@
         left: 0;
         margin: auto;
     }
-    .form{
+
+    .form {
         margin-top: 100px;
         margin-bottom: 80px;
     }

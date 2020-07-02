@@ -51,10 +51,14 @@
                 POST.login(this.form).then(res => {
                     if (res.code === 200) {
                         Cookies.set('token', res.token);
-                        this.$notify({
-                            title: '提示',
-                            message: '登入成功',
+                        this.$message({
+                            type: 'success',
+                            message: '登录成功！'
                         });
+                        let info={
+                            username: this.form.username,
+                        };
+                        Cookies.set('info', info);
                         this.$router.push({path: `/camera`});
                     } else {
                         this.$message({
