@@ -5,6 +5,12 @@
             width="60%"
             center
     >
+        <div style="text-align: center">
+            <el-avatar :size="100" :src="tou"></el-avatar>
+            <div>
+            <cli-avatar v-if="edit" ref="av" :pam="param2" @setHide="setHide"></cli-avatar>
+            </div>
+        </div>
         <div style="margin: 20px;"></div>
         <el-form :model="form"
                  label-width="120px"
@@ -128,10 +134,17 @@
     import PUT from "../../api/PUT";
     import Cookies from "js-cookie"
     import pro from "../../pages/pro";
+    import API_PRO from "../../api/API_PRO";
+    import CliAvatar from "../base/cliAvatar";
     export default {
         name: "personDetail",
+        components: {CliAvatar},
         data(){
             return{
+                imgURL:API_PRO.imageURL,
+                param2:{
+                },
+                tou:'',
                 title:"",
                 type:"",
                 typeName:"",
@@ -181,7 +194,9 @@
                 this.centerDetailVisible = false
             },
             setData(data){
-                this.form = data
+                this.form = data;
+                this.tou = this.imgURL+this.form.profile_photo;
+                this.param2['id'] = this.form.id;
             },
             setAdd(){
               this.add = true;
@@ -281,6 +296,7 @@
                 console.log(data)
                 this.type = data.type;
                 this.edit = data.edit;
+                this.param2['type'] = this.type;
 
                 if (this.type == '0'){
                     this.typeName= '老人';
@@ -304,6 +320,9 @@
                     this.title = this.typeName+"详情"
                 }
             }
+        },
+        mounted() {
+
         }
     }
 </script>

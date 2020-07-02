@@ -14,6 +14,7 @@
                 label="头像"
                 width="180">
             <template slot-scope="scope">
+                <el-avatar :src="imgURL+scope.row.profile_photo"></el-avatar>
                 <span style="margin-left: 10px">{{ scope.row.birthday}}</span>
             </template>
         </el-table-column>
@@ -72,6 +73,7 @@
     import PersonDetail from "./personDetail";
     import DELETE from "../../api/DELETE";
     import Cookies from "js-cookie";
+    import API_PRO from "../../api/API_PRO";
     export default {
         // props:{
         //   getData:{
@@ -84,6 +86,7 @@
         data(){
             return{
                 type:"0", //判断是老人还是员工还是义工
+                imgURL:API_PRO.imageURL,
 
                 tableData: [{
 

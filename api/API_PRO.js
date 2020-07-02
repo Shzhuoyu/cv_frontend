@@ -5,8 +5,8 @@ export default {
   baseURL: 'http://192.144.229.49:8000/api/',
   // baseURL: 'http://127.0.0.1:8000/api/',
   qianduanURL: 'http://59.64.3.20:8088',
-  uploadURL: 'http://192.144.229.49:8000/api/',
-  imageURL:'http://127.0.0.1:8000/api/base/getPhoto/',
+  uploadURL: 'http://192.144.229.49:8000/api/base/upload/avatar',
+  imageURL:'http://192.144.229.49:8000/api/base/getPhoto/',
 
 
   method: 'post',

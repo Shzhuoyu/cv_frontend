@@ -3,6 +3,7 @@
     <cli-title class="title"></cli-title>
     <cli-menu class="menu" page-index="2"></cli-menu>
         <div class="center">
+
             <el-button class="add_button" type="success" @click="handleAdd">
                 <i class="el-icon-circle-plus"></i>添加{{typeName}}</el-button>
 
@@ -21,6 +22,7 @@
                 </el-tab-pane>
 
             </el-tabs>
+            <cli-upload></cli-upload>
             <person-detail ref="detail" ></person-detail>
 
 
@@ -36,9 +38,10 @@
     import PersonList from "../../components/personManagement/personList";
     import GET from "../../api";
     import PersonDetail from "../../components/personManagement/personDetail";
+    import CliUpload from "../../components/base/cliUpload";
     export default {
         name: "index",
-        components: {PersonDetail, PersonList, CliMenu, CliTitle},
+        components: {CliUpload, PersonDetail, PersonList, CliMenu, CliTitle},
         data(){
             return{
                 type:'0',
