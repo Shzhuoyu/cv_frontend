@@ -15,7 +15,8 @@ export default {
    * 基本
    */
   login:{url:'login'},
-   signUp:{url:'account'},
+  signUp:{url:'account'},
+  setInfo:{url:'base/sysInfo'},
 
   /**
    * 人员管理
@@ -27,9 +28,15 @@ export default {
 
   volunteerList:{url:'person/volunteerList'},
   volunteerDetail:{url:'person/volunteerDetail'},
+
+  /**
+   * 实时事件
+   */
   eventList:{url:'event/list'},
 
-
-
+  /**
+   * 统计报表
+   */
+  peopleCount:{url:'/statistics/all'},
 
 }

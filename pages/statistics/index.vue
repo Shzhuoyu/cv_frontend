@@ -7,7 +7,7 @@
         <div class="center">
             <div>
                 <el-row class="text" type="flex" justify="center">
-                    <h>敬老院</h>
+                    <h3>敬老院</h3>
                 </el-row>
                 <el-row style="margin-bottom: 30px" type="flex" justify="center">
                     <el-col :span="15" class="card">
@@ -46,6 +46,7 @@
     import CliMenu from "../../components/base/cliMenu";
     import echarts from 'echarts';
     import Vue from 'vue'
+    import GET from "../../api";
 
     Vue.prototype.$echarts = echarts;
 
@@ -90,13 +91,19 @@
         },
         mounted() {
             // get all data
-
+            this.getPeopleCount();
             this.myEcharts1();
             this.myEcharts2();
             this.myEcharts3();
             this.myEcharts4();
         },
         methods: {
+            getPeopleCount: function () {
+                let data = {};
+                GET.peopleCount(data).then(res => {
+                    console.log(res);
+                })
+            },
             myEcharts1() {
                 // 基于准备好的dom，初始化echarts实例
                 var myChart1 = this.$echarts.init(document.getElementById('allLine'));
