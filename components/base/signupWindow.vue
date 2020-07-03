@@ -175,6 +175,7 @@
                 console.log(newForm);
                 POST.signUp(newForm).then(res => {
                     if (res.code === 200) {
+                        Cookies.set('token', res.token);
                         this.$message({
                             type: 'success',
                             message: '注册成功！请填写个人信息'

@@ -17,7 +17,7 @@
             </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
-    <el-button style="position:absolute;right: 300px;bottom: 30px" @click="setHide">取 消</el-button>
+    <el-button style="position:absolute;left: 300px;bottom: 30px" @click="setHide">取 消</el-button>
     <el-button style="position:absolute;right: 300px;bottom: 30px" type="primary" @click="login">登入</el-button>
   </span>
     </el-dialog>
