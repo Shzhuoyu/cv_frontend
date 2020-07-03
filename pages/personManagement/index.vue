@@ -22,7 +22,6 @@
                 </el-tab-pane>
 
             </el-tabs>
-            <cli-upload></cli-upload>
             <person-detail ref="detail" ></person-detail>
 
 

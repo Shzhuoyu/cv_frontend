@@ -15,7 +15,6 @@
                 width="180">
             <template slot-scope="scope">
                 <el-avatar :src="imgURL+scope.row.profile_photo"></el-avatar>
-                <span style="margin-left: 10px">{{ scope.row.birthday}}</span>
             </template>
         </el-table-column>
 
