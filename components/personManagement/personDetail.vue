@@ -5,7 +5,7 @@
             width="60%"
             center
     >
-        <div style="text-align: center">
+        <div style="text-align: center" v-if="!add">
             <el-avatar :size="100" :src="tou"></el-avatar>
             <div>
             <cli-avatar v-if="edit" ref="av" :pam="param2" @setHide="setHide"></cli-avatar>
@@ -145,6 +145,7 @@
                 param2:{
                 },
                 tou:'',
+                info:'',
                 title:"",
                 type:"",
                 typeName:"",
@@ -153,7 +154,7 @@
                 checkInName:'',
                 checkOutName:'',
                 centerDetailVisible: false,
-                form:{id: 1,
+                form:{id: "",
                     ORG_ID: null,
                     CLIENT_ID: null,
                     username: "",
@@ -213,6 +214,8 @@
                     }
 
                 }
+                this.form['UPDATED'] = this.getFormatDate()
+                this.form['UPDATEBY'] = this.info.username
                 let token = Cookies.get('token')
                 this.form['token'] = token
                 if (this.type == '0'){
@@ -259,6 +262,9 @@
                         delete this.form[prop]
                     }
                 }
+                this.form['CREATED'] = this.getFormatDate();
+                this.form['CREATEBY'] = this.info.username;
+
                 if (this.type == '0'){
                     POST.oldPersonList(this.form).then(res=>{
                         this.$notify({
@@ -319,9 +325,31 @@
                 }else {
                     this.title = this.typeName+"详情"
                 }
+            },
+            getFormatDate(){
+                let date = new Date();
+                let seperator1 = "-";
+                let year = date.getFullYear();
+                let month = date.getMonth() + 1;
+                let strDate = date.getDate();
+                let hour = date.getHours();//得到小时
+                let minu = date.getMinutes();//得到分钟
+                let sec = date.getSeconds();//得到秒
+
+                if (month < 10) month = "0" + month;
+                if (date < 10) date = "0" + date;
+                if (hour < 10) hour = "0" + hour;
+                if (minu < 10) minu = "0" + minu;
+                if (sec < 10) sec = "0" + sec;
+                let currentDate = year + seperator1 + month + seperator1 + strDate+'T'+ hour + ":" + minu + ":" + sec;
+                return currentDate;
             }
+
+
         },
         mounted() {
+            this.info = Cookies.get('info');
+            this.info = JSON.parse(this.info);
 
         }
     }
