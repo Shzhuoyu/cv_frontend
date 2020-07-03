@@ -7,7 +7,7 @@
         <div class="center">
             <div style="margin-top: 150px">
                 <div style="margin-left: 150px; width: 100px; display: inline-block;">
-                    <img :size="100" src="../../assets/image/head.png"/>
+<!--                    <img :size="100" src="../../assets/image/head.png"/>-->
                 </div>
                 <div style="margin-left: 50px; width: 400px; display: inline-block;">
                     <el-row>

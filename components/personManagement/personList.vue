@@ -122,38 +122,50 @@
                 this.type = type
             },
             handleDelete(item){
-                let data = {
-                    token:Cookies.get('token'),
-                    id:item.id
-                }
-                if (this.type == '0'){
-                    DELETE.oldPersonDetail(data).then(res=>{
-                        this.$notify({
-                            title: '提示',
-                            message: '删除成功',
-                        });
-                        this.$emit('getData');
+                this.$confirm('此操作将永久删除该人员, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    let data = {
+                        token:Cookies.get('token'),
+                        id:item.id
+                    }
+                    if (this.type == '0'){
+                        DELETE.oldPersonDetail(data).then(res=>{
+                            this.$message({
+                                type: 'success',
+                                message: '删除成功!'
+                            });
+                            this.$emit('getData');
 
-                    })
-                }
-                else if (this.type == '1'){
-                    DELETE.employeeDetail(data).then(res=>{
-                        this.$notify({
-                            title: '提示',
-                            message: '删除成功',
-                        });
-                        this.$emit('getData');
-                    })
-                }
-                else {
-                    DELETE.volunteerDetail(data).then(res=>{
-                        this.$notify({
-                            title: '提示',
-                            message: '删除成功',
-                        });
-                        this.$emit('getData');
-                    })
-                }
+                        })
+                    }
+                    else if (this.type == '1'){
+                        DELETE.employeeDetail(data).then(res=>{
+                            this.$message({
+                                type: 'success',
+                                message: '删除成功!'
+                            });
+                            this.$emit('getData');
+                        })
+                    }
+                    else {
+                        DELETE.volunteerDetail(data).then(res=>{
+                            this.$message({
+                                type: 'success',
+                                message: '删除成功!'
+                            });
+                            this.$emit('getData');
+                        })
+                    }
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
+
 
             },
             getFuckingData(){
