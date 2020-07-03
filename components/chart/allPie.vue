@@ -14,7 +14,7 @@
         name: "allPie",
         data() {
             return {
-                allEventCount: [['老人微信', 0],
+                allEventCount: [['老人微笑', 0],
                     ['老人互动', 0],
                     ['陌生人来访', 0],
                     ['老人摔倒', 0],
@@ -107,7 +107,8 @@
                 myChart2.setOption(option);
             },
             setData(data) {
-                for(let i=0;i<5;i++){
+                console.log(data);
+                for (let i = 0; i < 5; i++) {
                     this.allEventCount[i][1] = data[i];
                     this.allCount += data[i];
                 }

@@ -101,7 +101,7 @@
 
                     let allPieData = [0, 0, 0, 0, 0];
                     for (let i = 0; i < 5; i++) {
-                        for (let j = 0; i < 7; i++) {
+                        for (let j = 0; j < 7; j++) {
                             allPieData[i] += res[j][i+1];
                         }
                     }
