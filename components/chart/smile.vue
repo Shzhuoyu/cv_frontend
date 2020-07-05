@@ -51,6 +51,7 @@
             },
             setData(data) {
                 this.smileCount = data;
+                this.myEcharts4();
             }
         }
     }

@@ -81,7 +81,10 @@
         },
         mounted() {
             this.getPeopleCount();
-            this.getData();
+            this.getPast7Data();
+            this.getSmileOld();
+            this.getCommunicationOld();
+            this.getAge();
         },
         methods: {
             getPeopleCount: function () {
@@ -93,7 +96,7 @@
                     this.volunteerNum = res.volunteer;
                 })
             },
-            getData() {
+            getPast7Data() {
                 let data = {};
                 GET.eventCount(data).then(res => {
                     console.log(res);
@@ -106,6 +109,26 @@
                         }
                     }
                     this.$refs.allPieRef.setData(allPieData);
+                })
+            },
+            getSmileOld() {
+                let data = {};
+                GET.smileOld(data).then(res => {
+                    console.log(res);
+                    this.$refs.smile.setData(res);
+                })
+            },
+            getCommunicationOld() {
+                let data = {};
+                GET.communicateOld(data).then(res => {
+                    console.log(res);
+                    this.$refs.interaction.setData(res);
+                })
+            },
+            getAge(){
+                let data = {};
+                GET.age(data).then(res => {
+                    console.log(res);
                 })
             }
         }

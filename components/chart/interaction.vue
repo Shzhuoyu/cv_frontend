@@ -51,6 +51,7 @@
             },
             setData(data) {
                 this.interactionCount = data;
+                this.myEcharts3();
             }
         }
     }

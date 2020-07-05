@@ -40,4 +40,7 @@ export default {
   peopleCount:{url:'/statistics/all'},
   eventCount:{url:'/statistics/dailyEvent'},
   oldAnalysis:{url:'statistics/oldAnalysis'},
+  communicateOld :{url:'statistics/communicateOld '},
+  smileOld:{url:'statistics/smileOld'},
+  age:{url:'statistics/age'},
 }
