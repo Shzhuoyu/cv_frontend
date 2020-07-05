@@ -78,6 +78,7 @@
                 }
                 console.log(tmp);
                 this.allEvent = tmp;
+                console.log(this.allEvent)
                 this.myEcharts1();
             }
         }

@@ -8,7 +8,7 @@
         <div style="text-align: center" v-if="!add">
             <el-avatar :size="100" :src="tou"></el-avatar>
             <div>
-            <cli-avatar v-if="edit" ref="av" :pam="param2" @setHide="setHide"></cli-avatar>
+            <cli-avatar v-if="edit" ref="av" :pam="param2" @setHide="setHide" @fresh="fresh"></cli-avatar>
             </div>
         </div>
         <div style="margin: 20px;"></div>
@@ -35,6 +35,10 @@
 
             <el-form-item label="出生日期">
                 <el-input v-model="form.birthday" :disabled="!edit"></el-input>
+            </el-form-item>
+
+            <el-form-item label="电话">
+                <el-input v-model="form.phone" :disabled="!edit"></el-input>
             </el-form-item>
 
 
@@ -119,7 +123,6 @@
 
 
   <span slot="footer" class="dialog-footer" v-if="edit">
-      <el-button></el-button>
     <el-button style="position:absolute;left: 60px;bottom: 30px" @click="setHide">取 消</el-button>
     <el-button v-if="!add"  style="position:absolute;right: 60px;bottom: 30px" type="primary" @click="sendEdit">更新</el-button>
     <el-button v-if="add" style="position:absolute;right: 60px;bottom: 30px" type="primary" @click="sendAdd">添加</el-button>
@@ -148,6 +151,7 @@
                 info:'',
                 title:"",
                 type:"",
+                phone:'',
                 typeName:"",
                 edit:false,
                 add:false,
@@ -226,8 +230,6 @@
                         });
                         this.edit = false;
                         this.fresh()
-
-
                     })
                 }
                 else if (this.type == '1'){

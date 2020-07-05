@@ -39,4 +39,5 @@ export default {
    */
   peopleCount:{url:'/statistics/all'},
   eventCount:{url:'/statistics/dailyEvent'},
+  oldAnalysis:{url:'statistics/oldAnalysis'},
 }

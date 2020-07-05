@@ -1,9 +1,9 @@
 <template>
     <div>
     <el-table
-            :data="tableData"
+            :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
             :stripe=true
-            style="width: 90%">
+            style="width: 95%">
 
         <el-table-column
                 label="ID"
@@ -12,7 +12,7 @@
         ></el-table-column>
         <el-table-column
                 label="头像"
-                width="180">
+                width="80">
             <template slot-scope="scope">
                 <el-avatar :src="imgURL+scope.row.profile_photo"></el-avatar>
             </template>
@@ -20,7 +20,7 @@
 
         <el-table-column
                 label="姓名"
-                width="180"
+                width="100"
                 prop="username"
         ></el-table-column>
 
@@ -45,11 +45,16 @@
             </template>
         </el-table-column>
 
-        <el-table-column label="操作">
+        <el-table-column label="操作"
+        width="280">
             <template slot-scope="scope">
                 <el-button
                         size="mini"
                         @click="handleDetail(scope.row)">详情</el-button>
+                <el-button
+                        size="mini"
+                        v-if="type==0"
+                        @click="handleAnalysis(scope.row.id)">分析</el-button>
                 <el-button
                         size="mini"
                         @click="handleEdit(scope.row)">编辑</el-button>
@@ -60,7 +65,16 @@
             </template>
         </el-table-column>
     </el-table>
+        <el-pagination
+                @current-change="handleCurrentChange"
+                :current-page="currentPage"
+                :page-size="10"
+                layout="total, prev, pager, next, jumper"
+                :total="tableData.length">
+        </el-pagination>
+
         <person-detail ref="detail"></person-detail>
+        <oldman-analysis ref="anal"></oldman-analysis>
 
 
 
@@ -71,8 +85,10 @@
 <script>
     import PersonDetail from "./personDetail";
     import DELETE from "../../api/DELETE";
+    import POST from "../../api/POST";
     import Cookies from "js-cookie";
     import API_PRO from "../../api/API_PRO";
+    import OldmanAnalysis from "./oldMan/oldmanAnalysis";
     export default {
         // props:{
         //   getData:{
@@ -81,11 +97,14 @@
         //   }
         // },
         name: "personList",
-        components: {PersonDetail},
+        components: {OldmanAnalysis, PersonDetail},
         data(){
             return{
                 type:"0", //判断是老人还是员工还是义工
                 imgURL:API_PRO.imageURL,
+                currentPage:1,
+                pagesize:10,
+
 
                 tableData: [{
 
@@ -93,6 +112,9 @@
             }
         },
         methods:{
+            handleCurrentChange(val) {
+                this.currentPage = val;
+            },
             handleDetail(item){
                 let data = {
                     type: this.type,
@@ -112,6 +134,16 @@
                 this.$refs.detail.setTypeEdit(data)
                 this.$refs.detail.setData(item)
                 this.$refs.detail.setVisible()
+
+            },
+            handleAnalysis(id){
+                let data = {id:id}
+
+                POST.oldAnalysis(data).then(res=>{
+                    this.$refs.anal.setData(res)
+                    this.$refs.anal.setVisible()
+
+                })
 
             },
             setData(data){

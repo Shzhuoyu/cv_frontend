@@ -57,7 +57,11 @@
                     loading.close()
                     console.log(response)
                     if(response.status == 200){
-                        alert('上传成功')
+                        this.$message({
+                            type: 'success',
+                            message: '上传成功!'
+                        });
+                        this.$emit('fresh');
                         this.$emit('setHide');
                     }
                 })
@@ -68,5 +72,35 @@
 </script>
 
 <style scoped>
+    .file {
+        width: 70px;
+        position: relative;
+        display: inline-block;
+        height: 30px;
+        background: rgba(87, 173, 202, 0.82);
+        padding: 4px 12px;
+        overflow: hidden;
+        color: #ffffff;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .file input {
+        position: absolute;
+        font-size: 16px;
+        right: 0;
+        top: 0;
+        height: 30px;
+        width: 70px;
+        opacity: 0;
+        cursor: pointer;
+    }
+    .file:hover {
+        background: #5EBBDA;
+        border-color: #5EBBDA;
+        text-decoration: none;
+    }
 
 </style>
