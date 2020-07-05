@@ -14,7 +14,7 @@
                         <el-row><img src="../../assets/image/elder.png" alt=""></el-row>
                         <el-row><span class="subtext">老人数量</span></el-row>
                         <el-row>
-                            <el-button type="text" class="text">{{elderNum}}</el-button>
+                            <el-button type="text" class="text" @click="showAge">{{elderNum}}</el-button>
                         </el-row>
                     </el-col>
                     <el-col :span="15" class="card">
@@ -50,6 +50,17 @@
                         <smile ref="smile"></smile>
                     </el-col>
                 </el-row>
+                <el-dialog
+                        title="老人年龄分布"
+                        :visible.sync="showAgeOption"
+                        width="40%"
+                        center>
+                        <age ref="ageRef"></age>
+                    <span slot="footer" class="dialog-footer">
+                        <el-button @click="showAgeOption = false">取 消</el-button>
+                        <el-button type="primary" @click="showAgeOption = false">确 定</el-button>
+                    </span>
+                </el-dialog>
             </div>
         </div>
     </div>
@@ -62,6 +73,7 @@
     import allLine from "../../components/chart/allLine";
     import interaction from "../../components/chart/interaction";
     import smile from "../../components/chart/smile";
+    import age from "../../components/chart/age";
     import echarts from 'echarts';
     import Vue from 'vue'
     import GET from "../../api";
@@ -70,13 +82,14 @@
 
     export default {
         name: "index",
-        components: {allLine, CliTitle, CliMenu, allPie, interaction, smile},
+        components: {allLine, CliTitle, CliMenu, allPie, interaction, smile, age},
         data() {
             return {
                 elderNum: 0,
                 staffNum: 0,
                 volunteerNum: 0,
                 allEventNum: '0',
+                showAgeOption: false,
             }
         },
         mounted() {
@@ -84,7 +97,6 @@
             this.getPast7Data();
             this.getSmileOld();
             this.getCommunicationOld();
-            this.getAge();
         },
         methods: {
             getPeopleCount: function () {
@@ -105,7 +117,7 @@
                     let allPieData = [0, 0, 0, 0, 0];
                     for (let i = 0; i < 5; i++) {
                         for (let j = 0; j < 7; j++) {
-                            allPieData[i] += res[j][i+1];
+                            allPieData[i] += res[j][i + 1];
                         }
                     }
                     this.$refs.allPieRef.setData(allPieData);
@@ -125,11 +137,16 @@
                     this.$refs.interaction.setData(res);
                 })
             },
-            getAge(){
+            getAge() {
                 let data = {};
                 GET.age(data).then(res => {
                     console.log(res);
+                    this.$refs.ageRef.setData(res);
                 })
+            },
+            showAge() {
+                this.showAgeOption = true;
+                this.getAge();
             }
         }
     }
