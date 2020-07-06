@@ -9,7 +9,9 @@
             <div style="margin-top: 30px"></div>
             <intrusion-event-list ref="intrusionEventList"></intrusion-event-list>
         </div>
+        <web-socket @getEvents="getEvents"></web-socket>
     </div>
+
 
 </template>
 
@@ -19,10 +21,11 @@
     import elderEventList from "../../components/event/elderEventList";
     import intrusionEventList from "../../components/event/intrusionEventList";
     import GET from "../../api";
+    import WebSocket from "../../components/base/webSocket";
 
     export default {
         name: "index",
-        components: {CliTitle, CliMenu, elderEventList, intrusionEventList},
+        components: {WebSocket, CliTitle, CliMenu, elderEventList, intrusionEventList},
         data() {
             return {
 
