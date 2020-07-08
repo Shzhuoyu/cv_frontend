@@ -1,7 +1,9 @@
 <template>
     <div>
         <cli-title class="title"></cli-title>
-        <div class="menu"></div>
+        <div class="menu">
+            <cli-menu page-index="5"></cli-menu>
+        </div>
         <div class="center">
 
         </div>
@@ -12,9 +14,11 @@
 
 <script>
     import CliTitle from "../../components/base/cliTitle";
+    import CliMenu from "../../components/base/cliMenu";
+
     export default {
         name: "index",
-        components: {CliTitle}
+        components: {CliTitle, CliMenu}
     }
 </script>
 

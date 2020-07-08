@@ -1,8 +1,8 @@
 <template>
     <div>
-        <cli-title class="title" page-index="4"></cli-title>
+        <cli-title class="title"></cli-title>
         <div class="menu">
-            <cli-menu></cli-menu>
+            <cli-menu page-index="4"></cli-menu>
         </div>
         <div class="center">
             <elder-event-list ref="elderEventList"></elder-event-list>
@@ -11,8 +11,6 @@
         </div>
         <web-socket @getEvents="getEvents"></web-socket>
     </div>
-
-
 </template>
 
 <script>

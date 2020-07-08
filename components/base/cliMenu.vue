@@ -1,12 +1,17 @@
 <template>
     <div>
-        <div>
+        <div style="display:flex;justify-content:center;">
             <img src="../../assets/image/logo.png"
                  style="width: 80%;" alt="">
         </div>
+
+        <!--                background-color="#324157"-->
         <el-menu
                 :default-active="pageIndex"
-                class="el-menu-vertical-demo"
+                style="margin-left: 20px"
+                background-color="#ffffff"
+                text-color="#000000"
+                active-text-color="#20a0ff"
                 @open="handleOpen"
                 @close="handleClose"
                 @select="handleSelect">

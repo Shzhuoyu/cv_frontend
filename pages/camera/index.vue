@@ -50,37 +50,53 @@
             </div>
             <div style="margin-top: 30px"></div>
             <div>
-                <el-row style="margin-left:30px; width: 1200px" type="flex" justify="space-between">
+                <el-row style="margin-left:80px; width: 1200px" type="flex" justify="space-between">
                     <el-col :span="15" class="card">
-                        <el-card>
-                            <el-row><img src="../../assets/image/elder.png" alt=""></el-row>
-                            <el-row><span class="text">老人数量</span></el-row>
-                            <el-row><span class="subtext">{{currentTime}}</span></el-row>
-                            <el-row><el-button type="text" class="num">{{elderNum}}</el-button></el-row>
+                        <el-card shadow="hover" :body-style="{padding: '0px'}">
+                            <div class="grid-content grid-con-1">
+                                <i class="el-icon-user grid-con-icon"></i>
+                                <div class="grid-cont-right">
+                                    <div class="grid-num">{{elderNum}}</div>
+                                    <span class="subtext">{{currentTime}}</span>
+                                    <div class="maintext">老人数量</div>
+                                </div>
+                            </div>
                         </el-card>
                     </el-col>
                     <el-col :span="15" class="card">
-                        <el-card>
-                            <el-row><img src="../../assets/image/people.png" alt=""></el-row>
-                            <el-row><span class="text">工作人员数量</span></el-row>
-                            <el-row><span class="subtext">{{currentTime}}</span></el-row>
-                            <el-row><el-button type="text" class="num">{{staffNum}}</el-button></el-row>
+                        <el-card shadow="hover" :body-style="{padding: '0px'}">
+                            <div class="grid-content grid-con-2">
+                                <i class="el-icon-user grid-con-icon"></i>
+                                <div class="grid-cont-right">
+                                    <div class="grid-num">{{staffNum}}</div>
+                                    <span class="subtext">{{currentTime}}</span>
+                                    <div class="maintext">工作人员数量</div>
+                                </div>
+                            </div>
                         </el-card>
                     </el-col>
                     <el-col :span="15" class="card">
-                        <el-card>
-                            <el-row><img src="../../assets/image/people.png" alt=""></el-row>
-                            <el-row><span class="text">义工数量</span></el-row>
-                            <el-row><span class="subtext">{{currentTime}}</span></el-row>
-                            <el-row><el-button type="text" class="num">{{volunteerNum}}</el-button></el-row>
+                        <el-card shadow="hover" :body-style="{padding: '0px'}">
+                            <div class="grid-content grid-con-4">
+                                <i class="el-icon-user grid-con-icon"></i>
+                                <div class="grid-cont-right">
+                                    <div class="grid-num">{{volunteerNum}}</div>
+                                    <span class="subtext">{{currentTime}}</span>
+                                    <div class="maintext">义工数量</div>
+                                </div>
+                            </div>
                         </el-card>
                     </el-col>
                     <el-col :span="15" class="card">
-                        <el-card>
-                            <el-row><img src="../../assets/image/stranger.png" alt=""></el-row>
-                            <el-row><span class="text">陌生人数量</span></el-row>
-                            <el-row><span class="subtext">{{currentTime}}</span></el-row>
-                            <el-row><el-button type="text" class="num">{{strangerNum}}</el-button></el-row>
+                        <el-card shadow="hover" :body-style="{padding: '0px'}">
+                            <div class="grid-content grid-con-3">
+                                <i class="el-icon-user grid-con-icon"></i>
+                                <div class="grid-cont-right">
+                                    <div class="grid-num">{{strangerNum}}</div>
+                                    <span class="subtext">{{currentTime}}</span>
+                                    <div class="maintext">陌生人数量</div>
+                                </div>
+                            </div>
                         </el-card>
                     </el-col>
                 </el-row>
@@ -185,6 +201,11 @@
         margin-bottom: 10px;
     }
 
+    .maintext {
+        font-size: 16px;
+        text-align: center;
+    }
+
     .subtext {
         font-size: 14px;
         text-align: center;
@@ -195,8 +216,64 @@
         margin-top: 20px;
         width: 250px;
     }
-    .num {
-        font-size: 24px;
-        font-weight: 300;
+
+    .grid-content {
+        display: flex;
+        align-items: center;
+        height: 100px;
     }
+
+    .grid-cont-right {
+        flex: 1;
+        text-align: center;
+        font-size: 14px;
+        color: #999;
+    }
+
+    .grid-num {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .grid-con-icon {
+        font-size: 50px;
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        line-height: 100px;
+        color: #fff;
+    }
+
+    .grid-con-1 .grid-con-icon {
+        background: rgb(45, 140, 240);
+    }
+
+    .grid-con-1 .grid-num {
+        color: rgb(45, 140, 240);
+    }
+
+    .grid-con-2 .grid-con-icon {
+        background: rgb(100, 213, 114);
+    }
+
+    .grid-con-2 .grid-num {
+        color: rgb(45, 140, 240);
+    }
+
+    .grid-con-3 .grid-con-icon {
+        background: rgb(242, 94, 67);
+    }
+
+    .grid-con-3 .grid-num {
+        color: rgb(242, 94, 67);
+    }
+
+    .grid-con-4 .grid-con-icon {
+        background: rgb(242, 229, 87);
+    }
+
+    .grid-con-4 .grid-num {
+        color: rgb(45, 140, 240);
+    }
+
 </style>

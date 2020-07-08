@@ -1,7 +1,9 @@
 <template>
     <div>
-    <cli-title class="title"></cli-title>
-    <cli-menu class="menu" page-index="2"></cli-menu>
+        <cli-title class="title"></cli-title>
+        <div class="menu">
+            <cli-menu page-index="2"></cli-menu>
+        </div>
         <div class="center">
 
             <el-button class="add_button" type="success" @click="handleAdd">
