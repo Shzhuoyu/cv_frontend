@@ -29,6 +29,10 @@
                 <i class="el-icon-setting"></i>
                 <span slot="title">实时事件</span>
             </el-menu-item>
+            <el-menu-item index="5">
+                <i class="el-icon-setting"></i>
+                <span slot="title">机位操控</span>
+            </el-menu-item>
         </el-menu>
     </div>
 </template>
@@ -68,6 +72,9 @@
                         break;
                     case "4":
                         this.$router.push({path: `/event`});
+                        break;
+                    case "5":
+                        this.$router.push({path: `/control`});
                         break;
                     default:
                         break;
