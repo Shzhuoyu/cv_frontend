@@ -52,6 +52,7 @@
                                 address: res[i].event_location,
                                 description: res[i].event_desc,
                                 tag: res[i].event_type === 0 ? '微笑' : '交互',
+                                img_path: res[i].img_path,
                             };
                             elderEventData.push(tmp);
                         }else{
@@ -61,6 +62,7 @@
                                 address: res[i].event_location,
                                 description: res[i].event_desc,
                                 tag: res[i].event_type === 2 ? '陌生人来访' : (res[i].event_type === 3 ? '摔倒' : '禁止区域入侵'),
+                                img_path: res[i].img_path,
                             };
                             intrusionEventData.push(tmp);
                         }

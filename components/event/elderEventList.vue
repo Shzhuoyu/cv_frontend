@@ -3,6 +3,24 @@
         <div style="margin-top: 20px; margin-bottom: 30px; text-align: center; font-size: 18px;">
             <span>老人相关事件</span>
         </div>
+        <el-dialog
+                title="事件图片"
+                :visible.sync="showPic"
+                width="550px"
+                center>
+            <el-image :src="picUrl">
+                <div slot="placeholder" class="image-slot">
+                    <div style="width: 500px; text-align: center">加载中...</div>
+                </div>
+                <div slot="error" class="image-slot">
+                    <div style="width: 500px; text-align: center">加载失败</div>
+                </div>
+            </el-image>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="showPic = false">取 消</el-button>
+                <el-button type="primary" @click="showPic = false">确 定</el-button>
+            </span>
+        </el-dialog>
         <el-table
                 ref="filterTable"
                 :data="eventData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
@@ -69,12 +87,17 @@
 </template>
 
 <script>
+    import API_PRO from "../../api/API_PRO";
+
     export default {
         name: "elderEventList",
         data() {
             return {
                 search: '',
                 eventData: [],
+                imgURL: API_PRO.imageURL,
+                picUrl: '',
+                showPic: false,
             }
         },
         methods: {
@@ -94,12 +117,17 @@
                 const property = column['property'];
                 return row[property] === value;
             },
-            setData(data){
+            setData(data) {
                 this.eventData = data;
             },
             eventShow(row, column, event) {
-                console.log(row, column, event);
-                // get Pic 事件ID为row.ID
+                for (let i = 0; i < this.eventData.length; i++) {
+                    if (row.ID === this.eventData[i].ID) {
+                        this.picUrl = this.imgURL + this.eventData[i].img_path;
+                        this.showPic = true;
+                        break;
+                    }
+                }
             },
         }
     }
