@@ -1,27 +1,30 @@
 <template>
-    <el-dialog
-            title="登入"
-            :visible.sync="centerVisible"
-            width="50%"
-            center>
-        <div style="margin: 20px;"></div>
-        <el-form :model="form"
-                 label-width="120px"
-                 label-position="labelPosition"
-        >
-            <el-form-item label="姓名">
-                <el-input v-model="form.username"></el-input>
-            </el-form-item>
-            <el-form-item label="密码">
-                <el-input v-model="form.password" show-password></el-input>
-            </el-form-item>
-        </el-form>
-        <span slot="footer" class="dialog-footer">
-    <el-button style="position:absolute;left: 300px;bottom: 30px" @click="setHide">取 消</el-button>
-    <el-button style="position:absolute;right: 300px;bottom: 30px" type="primary" @click="login">登入</el-button>
-  </span>
-    </el-dialog>
-
+    <div style="border-radius: 25px;">
+        <el-dialog
+                title="登入"
+                :visible.sync="centerVisible"
+                width="30%"
+                center>
+            <div style="margin: 20px;"></div>
+            <div style="margin-left: 30px; margin-right: 30px">
+                <el-form :model="form"
+                         label-width="50px"
+                         label-position="labelPosition"
+                >
+                    <el-form-item label="姓名">
+                        <el-input v-model="form.username"></el-input>
+                    </el-form-item>
+                    <el-form-item label="密码">
+                        <el-input v-model="form.password" show-password></el-input>
+                    </el-form-item>
+                </el-form>
+            </div>
+            <div style="margin-top: 100px">
+                <el-button style="position:absolute;left: 130px;bottom: 30px" @click="setHide">取 消</el-button>
+                <el-button style="position:absolute;right: 130px;bottom: 30px" type="primary" @click="login">登入</el-button>
+            </div>
+        </el-dialog>
+    </div>
 </template>
 
 <script>

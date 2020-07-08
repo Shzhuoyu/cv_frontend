@@ -14,11 +14,11 @@
 <!--                text-color="#003377"-->
 <!--                active-text-color="#009FCC">-->
             <el-menu-item index="1">
-                <i class="el-icon-location"></i>
+                <i class="el-icon-menu"></i>
                 <span slot="title">监控信息</span>
             </el-menu-item>
             <el-menu-item index="2">
-                <i class="el-icon-menu"></i>
+                <i class="el-icon-user"></i>
                 <span slot="title">人员管理</span>
             </el-menu-item>
             <el-menu-item index="3">
@@ -30,7 +30,7 @@
                 <span slot="title">实时事件</span>
             </el-menu-item>
             <el-menu-item index="5">
-                <i class="el-icon-setting"></i>
+                <i class="el-icon-camera"></i>
                 <span slot="title">机位操控</span>
             </el-menu-item>
         </el-menu>

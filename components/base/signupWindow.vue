@@ -2,7 +2,7 @@
     <el-dialog
             title=""
             :visible.sync="centerVisible"
-            width="50%"
+            width="40%"
             center>
         <div style="margin: 20px;"></div>
         <el-steps :active="active" finish-status="success" class="stepCard">
@@ -12,65 +12,69 @@
 
         <!--        账号注册-->
         <div v-if="active===0" class="form">
-            <el-form :model="form"
-                     label-width="120px"
-                     label-position="labelPosition"
-                     :rules="rules"
-            >
-                <el-form-item label="用户名" prop="username">
-                    <el-input v-model="form.username"></el-input>
-                </el-form-item>
-                <el-form-item label="密码" prop="password">
-                    <el-input v-model="form.password" show-password></el-input>
-                </el-form-item>
-                <el-form-item label="再次输入密码" prop="checkPass">
-                    <el-input v-model="form.checkPass" show-password></el-input>
-                </el-form-item>
-            </el-form>
-            <span slot="footer" class="dialog-footer">
-                <el-button style="position:absolute;left: 300px;bottom: 30px" @click="setHide">取 消</el-button>
-                <el-button style="position:absolute;right: 300px;bottom: 30px" type="primary"
+            <div style="margin-left: 30px; margin-right: 50px">
+                <el-form :model="form"
+                         label-width="120px"
+                         label-position="labelPosition"
+                         :rules="rules"
+                >
+                    <el-form-item label="用户名" prop="username">
+                        <el-input v-model="form.username"></el-input>
+                    </el-form-item>
+                    <el-form-item label="密码" prop="password">
+                        <el-input v-model="form.password" show-password></el-input>
+                    </el-form-item>
+                    <el-form-item label="再次输入密码" prop="checkPass">
+                        <el-input v-model="form.checkPass" show-password></el-input>
+                    </el-form-item>
+                </el-form>
+                <span slot="footer" class="dialog-footer">
+                <el-button style="position:absolute;left: 200px;bottom: 30px" @click="setHide">取 消</el-button>
+                <el-button style="position:absolute;right: 200px;bottom: 30px" type="primary"
                            @click="signUp">注册</el-button>
             </span>
+            </div>
         </div>
 
         <!--        个人信息-->
         <div v-if="active===1" class="form">
-            <el-form :model="info"
-                     label-width="120px"
-                     label-position="labelPosition"
-                     :rules="rules"
-            >
-                <el-form-item label="用户名">
-                    <el-input v-model="info.account" disabled="disabled"></el-input>
-                </el-form-item>
-                <el-form-item label="真实姓名" prop="realname">
-                    <el-input v-model="info.REAL_NAME"></el-input>
-                </el-form-item>
-                <el-form-item label="性别" prop="sex">
-                    <el-select v-model="info.SEX" placeholder="请选择性别" value="">
-                        <el-option label="男" value="男"></el-option>
-                        <el-option label="女" value="女"></el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="邮箱">
-                    <el-input v-model="info.EMAIL"></el-input>
-                </el-form-item>
-                <el-form-item label="电话">
-                    <el-input v-model="info.PHONE"></el-input>
-                </el-form-item>
-                <el-form-item label="移动电话" prop="mobile">
-                    <el-input v-model="info.MOBILE"></el-input>
-                </el-form-item>
-                <el-form-item label="说明">
-                    <el-input v-model="info.DESCRIPTION"></el-input>
-                </el-form-item>
-            </el-form>
-            <span slot="footer" class="dialog-footer">
-                <el-button style="position:absolute;left: 300px;bottom: 30px" @click="setHide">取 消</el-button>
-                <el-button style="position:absolute;right: 300px;bottom: 30px" type="primary"
+            <div style="margin-left: 30px; margin-right: 50px">
+                <el-form :model="info"
+                         label-width="120px"
+                         label-position="labelPosition"
+                         :rules="rules"
+                >
+                    <el-form-item label="用户名">
+                        <el-input v-model="info.account" disabled="disabled"></el-input>
+                    </el-form-item>
+                    <el-form-item label="真实姓名" prop="realname">
+                        <el-input v-model="info.REAL_NAME"></el-input>
+                    </el-form-item>
+                    <el-form-item label="性别" prop="sex">
+                        <el-select v-model="info.SEX" placeholder="请选择性别" value="">
+                            <el-option label="男" value="男"></el-option>
+                            <el-option label="女" value="女"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="邮箱">
+                        <el-input v-model="info.EMAIL"></el-input>
+                    </el-form-item>
+                    <el-form-item label="电话">
+                        <el-input v-model="info.PHONE"></el-input>
+                    </el-form-item>
+                    <el-form-item label="移动电话" prop="mobile">
+                        <el-input v-model="info.MOBILE"></el-input>
+                    </el-form-item>
+                    <el-form-item label="说明">
+                        <el-input v-model="info.DESCRIPTION"></el-input>
+                    </el-form-item>
+                </el-form>
+                <span slot="footer" class="dialog-footer">
+                <el-button style="position:absolute;left: 200px;bottom: 30px" @click="setHide">取 消</el-button>
+                <el-button style="position:absolute;right: 200px;bottom: 30px" type="primary"
                            @click="setInfo">录 入</el-button>
             </span>
+            </div>
         </div>
     </el-dialog>
 </template>
@@ -223,7 +227,7 @@
         position: absolute;
         top: 50px;
         right: 0;
-        left: 0;
+        left: 20px;
         margin: auto;
     }
 
