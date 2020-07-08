@@ -1,5 +1,5 @@
 <template>
-    <div style="border-radius: 25px;">
+    <div>
         <el-dialog
                 title="登入"
                 :visible.sync="centerVisible"
@@ -7,15 +7,16 @@
                 center>
             <div style="margin: 20px;"></div>
             <div style="margin-left: 30px; margin-right: 30px">
-                <el-form :model="form"
-                         label-width="50px"
-                         label-position="labelPosition"
-                >
-                    <el-form-item label="姓名">
-                        <el-input v-model="form.username"></el-input>
+                <el-form :model="form">
+                    <el-form-item>
+                        <el-input v-model="form.username" placeholder="username">
+                            <el-button slot="prepend" icon="el-icon-user"></el-button>
+                        </el-input>
                     </el-form-item>
-                    <el-form-item label="密码">
-                        <el-input v-model="form.password" show-password></el-input>
+                    <el-form-item>
+                        <el-input v-model="form.password" show-password>
+                            <el-button slot="prepend" icon="el-icon-lock"></el-button>
+                        </el-input>
                     </el-form-item>
                 </el-form>
             </div>
