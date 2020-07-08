@@ -18,7 +18,7 @@
             this.websock.close() //离开路由之后断开websocket连接
         },methods: {
             initWebSocket(){ //初始化weosocket
-                const wsuri = "ws://127.0.0.1:8000/api/websocket/link";
+                const wsuri = "ws://192.144.229.49:8000/api/websocket/link";
                 this.websock = new WebSocket(wsuri);
                 console.log('链接成功')
                 this.websock.onmessage = this.websocketonmessage;
