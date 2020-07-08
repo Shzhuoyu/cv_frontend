@@ -43,4 +43,10 @@ export default {
   communicateOld :{url:'statistics/communicateOld '},
   smileOld:{url:'statistics/smileOld'},
   age:{url:'statistics/age'},
+
+  /**
+   * Websocket
+   */
+  entering:{url:'websocket/entering'},
+  reboot:{url:'websocket/reboot'},
 }
