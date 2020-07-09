@@ -5,7 +5,7 @@
             <cli-menu></cli-menu>
         </div>
         <div class="center">
-            <div style="margin-top: 150px">
+            <div style="margin-top: 100px">
                 <div style="margin-left: 150px; width: 100px; display: inline-block;">
                     <img :size="100" src="../../assets/image/head.png"/>
                 </div>
@@ -28,69 +28,71 @@
                     <div style="margin: 15px 0;"></div>
                 </div>
             </div>
-            <div style="margin-top: 100px; margin-left: 100px">
-                <el-tabs :tab-position="tabPosition" style="width: 700px;">
-                    <el-tab-pane label="账号">
-                        <el-form :model="form"
-                                 label-width="120px"
-                                 label-position="labelPosition"
-                                 :rules="rules"
-                        >
-                            <el-form-item label="原密码" prop="password">
-                                <el-input v-model="form.oldPassword" show-password></el-input>
-                            </el-form-item>
-                            <el-form-item label="新密码" prop="password">
-                                <el-input v-model="form.password" show-password></el-input>
-                            </el-form-item>
-                            <el-form-item label="再次输入新密码" prop="checkPass">
-                                <el-input v-model="form.checkPass" show-password></el-input>
-                            </el-form-item>
-                        </el-form>
-                        <el-button style="margin-top: 10px; float: right" type="primary"
-                                   @click="changePsw">更新密码</el-button>
-                    </el-tab-pane>
-                    <el-tab-pane label="通知">
-                        <el-form :model="info"
-                                 label-width="120px"
-                                 label-position="labelPosition"
-                                 :rules="rules"
-                        >
-                            <el-form-item label="邮箱">
-                                <el-input v-model="info.EMAIL"></el-input>
-                            </el-form-item>
-                            <el-form-item label="电话">
-                                <el-input v-model="info.PHONE"></el-input>
-                            </el-form-item>
-                            <el-form-item label="移动电话" prop="mobile">
-                                <el-input v-model="info.MOBILE"></el-input>
-                            </el-form-item>
-                        </el-form>
-                        <el-button style="margin-top: 10px; float: right" type="primary"
-                                   @click="setInfo">更新通知</el-button>
-                    </el-tab-pane>
-                    <el-tab-pane label="信息">
-                        <el-form :model="info"
-                                 label-width="120px"
-                                 label-position="labelPosition"
-                                 :rules="rules"
-                        >
-                            <el-form-item label="真实姓名" prop="realname">
-                                <el-input v-model="info.REAL_NAME"></el-input>
-                            </el-form-item>
-                            <el-form-item label="性别" prop="sex">
-                                <el-select v-model="info.SEX" placeholder="请选择性别" value="">
-                                    <el-option label="男" value="男"></el-option>
-                                    <el-option label="女" value="女"></el-option>
-                                </el-select>
-                            </el-form-item>
-                            <el-form-item label="说明">
-                                <el-input v-model="info.DESCRIPTION"></el-input>
-                            </el-form-item>
-                        </el-form>
-                        <el-button style="margin-top: 10px; float: right" type="primary"
-                                   @click="setInfo">更新信息</el-button>
-                    </el-tab-pane>
-                </el-tabs>
+            <div style="margin: 50px 300px 100px 100px;">
+                <el-card>
+                    <el-tabs :tab-position="tabPosition" style="margin-left: 50px; margin-top: 30px; width: 700px;">
+                        <el-tab-pane label="账号">
+                            <el-form :model="form"
+                                     label-width="120px"
+                                     label-position="labelPosition"
+                                     :rules="rules"
+                            >
+                                <el-form-item label="原密码" prop="password">
+                                    <el-input v-model="form.oldPassword" show-password></el-input>
+                                </el-form-item>
+                                <el-form-item label="新密码" prop="password">
+                                    <el-input v-model="form.password" show-password></el-input>
+                                </el-form-item>
+                                <el-form-item label="再次输入新密码" prop="checkPass">
+                                    <el-input v-model="form.checkPass" show-password></el-input>
+                                </el-form-item>
+                            </el-form>
+                            <el-button style="margin-top: 10px; float: right" type="primary"
+                                       @click="changePsw">更新密码</el-button>
+                        </el-tab-pane>
+                        <el-tab-pane label="通知">
+                            <el-form :model="info"
+                                     label-width="120px"
+                                     label-position="labelPosition"
+                                     :rules="rules"
+                            >
+                                <el-form-item label="邮箱">
+                                    <el-input v-model="info.EMAIL"></el-input>
+                                </el-form-item>
+                                <el-form-item label="电话">
+                                    <el-input v-model="info.PHONE"></el-input>
+                                </el-form-item>
+                                <el-form-item label="移动电话" prop="mobile">
+                                    <el-input v-model="info.MOBILE"></el-input>
+                                </el-form-item>
+                            </el-form>
+                            <el-button style="margin-top: 10px; float: right" type="primary"
+                                       @click="setInfo">更新通知</el-button>
+                        </el-tab-pane>
+                        <el-tab-pane label="信息">
+                            <el-form :model="info"
+                                     label-width="120px"
+                                     label-position="labelPosition"
+                                     :rules="rules"
+                            >
+                                <el-form-item label="真实姓名" prop="realname">
+                                    <el-input v-model="info.REAL_NAME"></el-input>
+                                </el-form-item>
+                                <el-form-item label="性别" prop="sex">
+                                    <el-select v-model="info.SEX" placeholder="请选择性别" value="">
+                                        <el-option label="男" value="男"></el-option>
+                                        <el-option label="女" value="女"></el-option>
+                                    </el-select>
+                                </el-form-item>
+                                <el-form-item label="说明">
+                                    <el-input v-model="info.DESCRIPTION"></el-input>
+                                </el-form-item>
+                            </el-form>
+                            <el-button style="margin-top: 10px; float: right" type="primary"
+                                       @click="setInfo">更新信息</el-button>
+                        </el-tab-pane>
+                    </el-tabs>
+                </el-card>
             </div>
         </div>
     </div>

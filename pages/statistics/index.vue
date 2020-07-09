@@ -6,32 +6,36 @@
         </div>
         <div class="center">
             <div>
-                <el-row class="text" type="flex" justify="center">
-                    <h3>敬老院</h3>
-                </el-row>
-                <el-row style="margin-bottom: 30px" type="flex" justify="center">
-                    <el-col :span="15" class="card">
-                        <el-row><img src="../../assets/image/elder.png" alt=""></el-row>
-                        <el-row><span class="subtext">老人数量</span></el-row>
-                        <el-row>
-                            <el-button type="text" class="text" @click="showAge">{{elderNum}}</el-button>
+                <div style="display:flex;justify-content:center;">
+                    <el-card shadow="hover" style="width: 500px; margin-bottom: 30px">
+                        <el-row class="text" type="flex" justify="center">
+                            <h3>敬老院</h3>
                         </el-row>
-                    </el-col>
-                    <el-col :span="15" class="card">
-                        <el-row><img src="../../assets/image/people.png" alt=""></el-row>
-                        <el-row><span class="subtext">工作人员数量</span></el-row>
-                        <el-row>
-                            <el-button type="text" class="text">{{staffNum}}</el-button>
+                        <el-row type="flex" justify="center">
+                            <el-col :span="15" class="card">
+                                <el-row><img src="../../assets/image/elder.png" alt=""></el-row>
+                                <el-row><span class="subtext">老人数量</span></el-row>
+                                <el-row>
+                                    <el-button type="text" class="text" @click="showAge">{{elderNum}}</el-button>
+                                </el-row>
+                            </el-col>
+                            <el-col :span="15" class="card">
+                                <el-row><img src="../../assets/image/people.png" alt=""></el-row>
+                                <el-row><span class="subtext">工作人员数量</span></el-row>
+                                <el-row>
+                                    <el-button type="text" class="text" disabled="true">{{staffNum}}</el-button>
+                                </el-row>
+                            </el-col>
+                            <el-col :span="15" class="card">
+                                <el-row><img src="../../assets/image/people.png" alt=""></el-row>
+                                <el-row><span class="subtext">义工数量</span></el-row>
+                                <el-row>
+                                    <el-button type="text" class="text" disabled="true">{{volunteerNum}}</el-button>
+                                </el-row>
+                            </el-col>
                         </el-row>
-                    </el-col>
-                    <el-col :span="15" class="card">
-                        <el-row><img src="../../assets/image/people.png" alt=""></el-row>
-                        <el-row><span class="subtext">义工数量</span></el-row>
-                        <el-row>
-                            <el-button type="text" class="text">{{volunteerNum}}</el-button>
-                        </el-row>
-                    </el-col>
-                </el-row>
+                    </el-card>
+                </div>
             </div>
             <div class="Echarts">
                 <el-row style="margin-left:50px; width: 1200px" type="flex" justify="space-between">

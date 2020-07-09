@@ -5,32 +5,29 @@
             <cli-menu page-index="2"></cli-menu>
         </div>
         <div class="center">
+<!--            <el-card>-->
+                <el-button class="add_button" type="success" @click="handleAdd">
+                    <i class="el-icon-circle-plus"></i>  添加{{typeName}}</el-button>
 
-            <el-button class="add_button" type="success" @click="handleAdd">
-                <i class="el-icon-circle-plus"></i>添加{{typeName}}</el-button>
+                <el-tabs v-model="type" type="border-card" @tab-click="handleClick">
 
-            <el-tabs v-model="type" type="border-card" @tab-click="handleClick">
+                    <el-tab-pane label="老人管理" name="0">
+                        <person-list ref="oldList" @getData="getData"></person-list>
+                    </el-tab-pane>
 
-                <el-tab-pane label="老人管理" name="0">
-                    <person-list ref="oldList" @getData="getData"></person-list>
-                </el-tab-pane>
+                    <el-tab-pane  label="工作人员" name="1">
+                        <person-list ref="employList" @getData="getData"></person-list>
+                    </el-tab-pane>
 
-                <el-tab-pane  label="工作人员" name="1">
-                    <person-list ref="employList" @getData="getData"></person-list>
-                </el-tab-pane>
+                    <el-tab-pane label="义工管理" name="2">
+                        <person-list ref="volList" @getData="getData"></person-list>
+                    </el-tab-pane>
 
-                <el-tab-pane label="义工管理" name="2">
-                    <person-list ref="volList" @getData="getData"></person-list>
-                </el-tab-pane>
-
-            </el-tabs>
+                </el-tabs>
+<!--            </el-card>-->
             <person-detail ref="detail" ></person-detail>
-
-
         </div>
     </div>
-
-
 </template>
 
 <script>
