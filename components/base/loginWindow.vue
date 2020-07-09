@@ -14,7 +14,7 @@
                         </el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-input v-model="form.password" show-password>
+                        <el-input v-model="form.password" placeholder="password" show-password>
                             <el-button slot="prepend" icon="el-icon-lock"></el-button>
                         </el-input>
                     </el-form-item>
