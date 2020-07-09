@@ -275,6 +275,13 @@
                         });
                         this.edit = false;
                         this.$parent.getData();
+                        let data = {
+                            type:this.type,
+                            id:res.id
+                        }
+                        POST.entering(data).then(res=>{
+
+                        })
                     })
                 }
                 else if (this.type == '1'){
