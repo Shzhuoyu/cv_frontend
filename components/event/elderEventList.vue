@@ -86,7 +86,7 @@
                 layout="total, prev, pager, next, jumper"
                 :total="eventData.length">
         </el-pagination>
-        <div style="margin-top: 50px; margin-right: 30px; margin-bottom: 50px; float: right;">
+        <div style="margin-top: 20px; margin-right: 30px; margin-bottom: 50px; float: right;">
             <el-button type="success" round @click="resetDateFilter">清除日期过滤器</el-button>
             <el-button type="primary" round @click="clearFilter">清除所有过滤器</el-button>
         </div>

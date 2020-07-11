@@ -23,14 +23,14 @@
                                 <el-row><img src="../../assets/image/people.png" alt=""></el-row>
                                 <el-row><span class="subtext">工作人员数量</span></el-row>
                                 <el-row>
-                                    <el-button type="text" class="text" disabled="true">{{staffNum}}</el-button>
+                                    <el-button type="text" class="text" :disabled="buttonDisabled">{{staffNum}}</el-button>
                                 </el-row>
                             </el-col>
                             <el-col :span="15" class="card">
                                 <el-row><img src="../../assets/image/people.png" alt=""></el-row>
                                 <el-row><span class="subtext">义工数量</span></el-row>
                                 <el-row>
-                                    <el-button type="text" class="text" disabled="true">{{volunteerNum}}</el-button>
+                                    <el-button type="text" class="text" :disabled="buttonDisabled">{{volunteerNum}}</el-button>
                                 </el-row>
                             </el-col>
                         </el-row>
@@ -66,6 +66,8 @@
                     </span>
                 </el-dialog>
             </div>
+            <el-button style="margin-top: 40px; margin-right: 100px; margin-bottom: 50px; float: right" type="primary"
+                       @click="download">下载总报表</el-button>
         </div>
     </div>
 </template>
@@ -89,6 +91,7 @@
         components: {allLine, CliTitle, CliMenu, allPie, interaction, smile, age},
         data() {
             return {
+                buttonDisabled: true,
                 elderNum: 0,
                 staffNum: 0,
                 volunteerNum: 0,
@@ -151,6 +154,9 @@
             showAge() {
                 this.showAgeOption = true;
                 this.getAge();
+            },
+            download() {
+
             }
         }
     }
