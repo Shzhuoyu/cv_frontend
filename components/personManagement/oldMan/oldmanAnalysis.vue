@@ -5,7 +5,6 @@
             width="70%"
             center>
 
-
         <div style="text-align: center">
         <el-card class="card">
             <div class="text">本周微笑次数</div>
@@ -52,7 +51,13 @@
         methods:{
             setVisible(){
                 this.centerDetailVisible = true;
-                this.myEcharts1();
+
+                this.$nextTick(function () {
+                    // DOM is now updated
+                    // `this` is bound to the current instance
+                    this.myEcharts1();
+                })
+
             },
             setHide(){
                 this.centerDetailVisible = false

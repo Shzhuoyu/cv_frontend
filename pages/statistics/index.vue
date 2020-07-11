@@ -66,8 +66,11 @@
                     </span>
                 </el-dialog>
             </div>
-            <el-button style="margin-top: 40px; margin-right: 100px; margin-bottom: 50px; float: right" type="primary"
+            <el-button style="position:absolute;right: 180px " type="primary"
                        @click="download">下载总报表</el-button>
+            <div style="height: 30px">
+
+            </div>
         </div>
     </div>
 </template>
