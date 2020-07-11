@@ -86,6 +86,7 @@
     import echarts from 'echarts';
     import Vue from 'vue'
     import GET from "../../api";
+    import API_PRO from "../../api/API_PRO";
 
     Vue.prototype.$echarts = echarts;
 
@@ -159,6 +160,7 @@
                 this.getAge();
             },
             download() {
+                window.open(API_PRO.baseURL+'statistics/excel')
 
             }
         }

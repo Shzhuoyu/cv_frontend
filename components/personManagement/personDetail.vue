@@ -15,7 +15,7 @@
             </div>
         </div>
         <div style="margin: 20px;text-align: center">
-        <el-steps :active="active" simple style="width:600px;margin: 0 auto" v-if="add&&type==0">
+        <el-steps :active="active" simple style="width:600px;margin: 0 auto" v-if="add">
             <el-step title="信息填写" icon="el-icon-edit"></el-step>
             <el-step title="人脸录入" icon="el-icon-camera-solid"></el-step>
         </el-steps>
@@ -128,12 +128,13 @@
                     </el-form-item>
                 </el-form>
 
+                <div style="height: 50px"></div>
+
 
           <span slot="footer" class="dialog-footer" v-if="edit">
             <el-button style="position:absolute;left: 260px;bottom: 30px" @click="setHide">取 消</el-button>
             <el-button v-if="!add"  style="position:absolute;right: 260px;bottom: 30px" type="primary" @click="sendEdit">更新</el-button>
-            <el-button v-if="add&&type!=0" style="position:absolute;right: 260px;bottom: 30px" type="primary" @click="sendAdd">添加</el-button>
-            <el-button v-if="add&&type==0" style="position:absolute;right: 260px;bottom: 30px" type="primary" @click="AddOld">下一步</el-button>
+            <el-button v-if="add" style="position:absolute;right: 260px;bottom: 30px" type="primary" @click="sendAdd">下一步</el-button>
           </span>
         </div>
     <div style="text-align: center" v-if="takePhoto">
@@ -233,6 +234,7 @@
                         title: '提示',
                         message: '人脸信息录入完毕',
                     });
+                    Object.assign(this.$data, this.$options.data())
                     this.setHide()
                 }else {
                     GET.takePhoto().then(res=>{
@@ -244,11 +246,6 @@
                     })
                 }
 
-            },
-            change(){
-                this.active++;
-                this.baseInfoVisable = !this.baseInfoVisable;
-                this.takePhoto = !this.takePhoto;
             },
             setVisible(){
                 this.centerDetailVisible = true
@@ -313,35 +310,16 @@
 
 
             },
-            AddOld(){
-                for (let prop in this.form)
-                {
-                    if (this.form[prop] == null||this.form[prop] == ''){
-                        delete this.form[prop]
-                    }
-                }
-                this.form['CREATED'] = this.getFormatDate();
-                this.form['CREATEBY'] = this.info.username;
-                POST.oldPersonList(this.form).then(res=>{
+            entering(data){
+
+                POST.entering(data).then(res=>{
                     this.$notify({
                         title: '提示',
-                        message: '信息添加成功，请录入人脸信息',
+                        message: '相机已启动，请拍照',
                     });
-                    this.edit = false;
-                    this.$parent.getData();
-                    let data = {
-                        type:this.type,
-                        id:res.id
-                    }
-                    POST.entering(data).then(res=>{
-                        this.$notify({
-                            title: '提示',
-                            message: '相机已启动，请拍照',
-                        });
-                        this.active++;
-                        this.baseInfoVisable = !this.baseInfoVisable;
-                        this.takePhoto = !this.takePhoto;
-                    })
+                    this.active++;
+                    this.baseInfoVisable = !this.baseInfoVisable;
+                    this.takePhoto = !this.takePhoto;
                 })
             },
             sendAdd(){
@@ -355,24 +333,49 @@
                 }
                 this.form['CREATED'] = this.getFormatDate();
                 this.form['CREATEBY'] = this.info.username;
-                if (this.type == '1'){
-                    POST.employeeList(this.form).then(res=>{
+                if(this.type == '0'){
+                    POST.oldPersonList(this.form).then(res=>{
                         this.$notify({
                             title: '提示',
-                            message: '添加成功',
+                            message: '信息添加成功，请录入人脸信息',
                         });
                         this.edit = false;
                         this.$parent.getData();
+                        let data = {
+                            type:this.type,
+                            id:res.id
+                        }
+                        this.entering(data)
+                    })
+                }
+                else if (this.type == '1'){
+                    POST.employeeList(this.form).then(res=>{
+                        this.$notify({
+                            title: '提示',
+                            message: '信息添加成功，请录入人脸信息',
+                        });
+                        this.edit = false;
+                        this.$parent.getData();
+                        let data = {
+                            type:this.type,
+                            id:res.id
+                        }
+                        this.entering(data);
                     })
                 }
                 else {
                     POST.volunteerList(this.form).then(res=>{
                         this.$notify({
                             title: '提示',
-                            message: '添加成功',
+                            message: '信息添加成功，请录入人脸信息',
                         });
                         this.edit = false;
                         this.$parent.getData();
+                        let data = {
+                            type:this.type,
+                            id:res.id
+                        }
+                        this.entering(data);
                     })
                 }
 
@@ -444,6 +447,9 @@
         background-color: white;
         font-weight: bold;
         color: #777b83;
+    }
+    .dialog-footer{
+        height: 100px;
     }
 
 </style>

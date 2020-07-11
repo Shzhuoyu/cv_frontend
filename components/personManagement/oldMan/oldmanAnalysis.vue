@@ -51,7 +51,6 @@
         methods:{
             setVisible(){
                 this.centerDetailVisible = true;
-
                 this.$nextTick(function () {
                     // DOM is now updated
                     // `this` is bound to the current instance
