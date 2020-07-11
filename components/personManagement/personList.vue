@@ -3,7 +3,7 @@
     <el-table
             :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)"
             :stripe=true
-            style="width: 95%">
+            style="width: 100%">
 
         <el-table-column
                 label="ID"
@@ -45,8 +45,12 @@
             </template>
         </el-table-column>
 
-        <el-table-column label="操作"
-        width="280">
+        <el-table-column
+                label="备注"
+                prop="DESCRIPTION"
+        ></el-table-column>
+
+        <el-table-column label="操作">
             <template slot-scope="scope">
                 <el-button
                         size="mini"
