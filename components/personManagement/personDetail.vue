@@ -3,9 +3,8 @@
             :title="title"
             v-if="centerDetailVisible"
             :visible.sync="centerDetailVisible"
-            @close="handleClose"
+            :before-close="handleClose"
             width="60%"
-            :destroy-on-close="true"
             center
     >
 
@@ -16,12 +15,12 @@
             </div>
         </div>
         <div style="margin: 20px;text-align: center">
-        <el-steps :active="active" simple style="width:600px;margin: 0 auto">
+        <el-steps :active="active" simple style="width:600px;margin: 0 auto" v-if="add&&type==0">
             <el-step title="信息填写" icon="el-icon-edit"></el-step>
             <el-step title="人脸录入" icon="el-icon-camera-solid"></el-step>
         </el-steps>
         </div>
-        <el-button @click="change"> 临时切换器</el-button>
+        <el-button @click="change" v-if="add&&type==0"> 临时切换器</el-button>
             <div v-if="baseInfoVisable">
                 <el-form :model="form"
                      label-width="120px"
@@ -213,8 +212,19 @@
             }
         },
         methods:{
-            handleClose(){
-                Object.assign(this.$data, this.$options.data())
+            handleClose(done){
+                if (this.add){
+                    this.$confirm('确认关闭？所有表单和数据将丢失')
+                        .then(_ => {
+                            done();
+                            Object.assign(this.$data, this.$options.data())
+                        })
+                        .catch(_ => {});
+                }
+                else {
+                    done()
+                }
+
             },
             takePhotos(){
                 if (this.count>=7){

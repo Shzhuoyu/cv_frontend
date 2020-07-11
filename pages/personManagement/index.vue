@@ -102,8 +102,8 @@
     @import "../../assets/css/page.css";
     .add_button{
         position: absolute;
-        right: 200px;
-        margin-right: 200px;
+        right: 100px;
+        margin-right: 140px;
         font-weight: bold;
         /*margin-bottom: 100px;*/
         z-index: 20
