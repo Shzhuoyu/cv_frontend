@@ -27,6 +27,9 @@
                     <el-form-item label="再次输入密码" prop="checkPass">
                         <el-input v-model="form.checkPass" show-password></el-input>
                     </el-form-item>
+                    <el-form-item label="身份验证码" prop="verificationID">
+                        <el-input v-model="form.verificationID"></el-input>
+                    </el-form-item>
                 </el-form>
                 <span slot="footer" class="dialog-footer">
                 <el-button style="position:absolute;left: 200px;bottom: 30px" @click="setHide">取 消</el-button>
@@ -117,6 +120,9 @@
                     checkPass: [
                         {required: true, validator: validatePass2, trigger: 'blur'}
                     ],
+                    verificationID: [
+                        {required: true, message: '请输入身份验证码', trigger: 'blur'}
+                    ],
                     realname: [
                         {required: true, message: '请输入真实姓名', trigger: 'blur'}
                     ],
@@ -135,6 +141,7 @@
                     username: '',
                     password: '',
                     checkPass: '',
+                    verificationID: '',
                 },
                 active: 0,
                 info: {
