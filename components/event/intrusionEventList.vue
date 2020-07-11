@@ -1,7 +1,7 @@
 <template>
     <el-card>
         <div style="margin-top: 20px; margin-bottom: 30px; text-align: center; font-size: 18px;">
-            <span>入侵相关事件</span>
+            <span>老人摔倒与入侵相关事件</span>
         </div>
         <el-dialog
                 title="事件图片"
@@ -38,7 +38,7 @@
                     sortable
                     width="180"
                     column-key="date"
-                    :filters="[{text: '2020-07-02', value: '2020-07-02'}, {text: '2020-07-01', value: '2020-07-01'}]"
+                    :filters="dateMap"
                     :filter-method="filterHandler"
             >
             </el-table-column>
@@ -55,12 +55,12 @@
                     prop="tag"
                     label="事件"
                     width="200"
-                    :filters="[{ text: '禁止区域入侵', value: '禁止区域入侵' }, { text: '陌生人来访', value: '陌生人来访' }]"
+                    :filters="[{ text: '摔倒', value: '摔倒' }, { text: '禁止区域入侵', value: '禁止区域入侵' }, { text: '陌生人来访', value: '陌生人来访' }]"
                     :filter-method="filterTag"
                     filter-placement="bottom-end">
                 <template slot-scope="scope">
                     <el-tag
-                            :type="scope.row.tag === '禁止区域入侵' ? 'danger' : 'warning'"
+                            :type="scope.row.tag === '摔倒' ? 'danger' : (scope.row.tag === '禁止区域入侵' ? 'warning' : 'info' )"
                             disable-transitions>{{scope.row.tag}}
                     </el-tag>
                 </template>
@@ -93,6 +93,7 @@
                 showPic: false,
                 currentPage:1,
                 listSize: 10,
+                dateMap: [],
             }
         },
         methods: {
@@ -117,6 +118,18 @@
             },
             setData(data) {
                 this.eventData = data;
+                for(let i=0; i<data.length; i++){
+                    let pushFlag = true;
+                    for(let j=0; j<this.dateMap.length; j++) {
+                        if(this.dateMap[j].text === data[i].date){
+                            pushFlag = false;
+                            break;
+                        }
+                    }
+                    if(pushFlag){
+                        this.dateMap.push({text: data[i].date, value: data[i].date});
+                    }
+                }
             },
             eventShow(row, column, event) {
                 for (let i = 0; i < this.eventData.length; i++) {
