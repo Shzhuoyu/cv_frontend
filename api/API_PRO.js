@@ -49,4 +49,8 @@ export default {
    */
   entering:{url:'websocket/entering'},
   reboot:{url:'websocket/reboot'},
+  changeFuc:{url:'websocket/changeFuc'},
+  takePhoto:{url:'websocket/takePhoto'},
+  standard:{url:'websocket/standard'}
+
 }

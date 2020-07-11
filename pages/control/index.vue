@@ -9,13 +9,19 @@
                 <div>
                     <span style="margin-right: 50px">主相机功能</span>
                     <el-radio-group v-model="radio" size="medium" @change="changeFunc">
-                        <el-radio-button label="无"></el-radio-button>
-                        <el-radio-button label="微笑检测"></el-radio-button>
-                        <el-radio-button label="交互检测"></el-radio-button>
-                        <el-radio-button label="摔倒检测"></el-radio-button>
-                        <el-radio-button label="禁区入侵"></el-radio-button>
+                        <el-radio-button label="0">无</el-radio-button>
+                        <el-radio-button label="1">微笑检测</el-radio-button>
+                        <el-radio-button label="2">交互检测</el-radio-button>
+                        <el-radio-button label="3">摔倒检测</el-radio-button>
+                        <el-radio-button label="4">禁区入侵</el-radio-button>
                     </el-radio-group>
                 </div>
+            </el-card>
+            <el-card style="margin-top: 20px">
+                <span style="margin-right: 50px">主相机控制</span>
+                <el-button type="primary" plain @click="standard">标定</el-button>
+                <el-button type="warning" plain style="margin-left: 30px" @click="reboot">重启</el-button>
+
             </el-card>
         </div>
     </div>
@@ -26,13 +32,15 @@
 <script>
     import CliTitle from "../../components/base/cliTitle";
     import CliMenu from "../../components/base/cliMenu";
+    import POST from "../../api/POST";
+    import GET from "../../api"
 
     export default {
         name: "index",
         components: {CliTitle, CliMenu},
         data () {
             return {
-                radio: '无',
+                radio: '',
             };
         },
         methods:{
@@ -44,33 +52,58 @@
                 }).then(() => {
                     // todo 更改相机功能
                     switch (val) {
-                        case '无':
-                            this.radio = '无';
+                        case '0':
+                            this.radio = '0';
                             break;
-                        case '微笑检测':
-                            this.radio = '微笑检测';
+                        case '1':
+                            this.radio = '1';
                             break;
-                        case '交互检测':
-                            this.radio = '交互检测';
+                        case '2':
+                            this.radio = '2';
                             break;
-                        case '摔倒检测':
-                            this.radio = '摔倒检测';
+                        case '3':
+                            this.radio = '3';
                             break;
-                        case '禁区入侵':
-                            this.radio = '禁区入侵';
+                        case '4':
+                            this.radio = '4';
                             break;
                     }
-                    this.$message({
-                        type: 'success',
-                        message: '更改成功!'
-                    });
+                    let data = {
+                        fuc:this.radio
+                    }
+                    POST.changeFuc(data).then(res=>{
+                        this.$message({
+                            type: 'success',
+                            message: res
+                        });
+                    })
+
+
                 }).catch(() => {
                     this.$message({
                         type: 'info',
                         message: '更改删除'
                     });
                 });
-            },
+            }, reboot(){
+                GET.reboot().then(res=>{
+                    this.$message({
+                        type: 'success',
+                        message: res
+                    });
+                })
+
+            },standard(){
+                GET.standard().then(res=> {
+                    this.$message({
+                        type: 'success',
+                        message: res
+                    });
+                })
+
+            }
+
+
         }
     }
 </script>
