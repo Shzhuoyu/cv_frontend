@@ -20,7 +20,7 @@
             <el-step title="人脸录入" icon="el-icon-camera-solid"></el-step>
         </el-steps>
         </div>
-        <el-button @click="change" v-if="add&&type==0"> 临时切换器</el-button>
+<!--        <el-button @click="change" v-if="add&&type==0"> 临时切换器</el-button>-->
             <div v-if="baseInfoVisable">
                 <el-form :model="form"
                      label-width="120px"
@@ -130,14 +130,15 @@
 
 
           <span slot="footer" class="dialog-footer" v-if="edit">
-            <el-button style="position:absolute;left: 60px;bottom: 30px" @click="setHide">取 消</el-button>
-            <el-button v-if="!add"  style="position:absolute;right: 60px;bottom: 30px" type="primary" @click="sendEdit">更新</el-button>
-            <el-button v-if="add&&type!=0" style="position:absolute;right: 60px;bottom: 30px" type="primary" @click="sendAdd">添加</el-button>
-            <el-button v-if="add&&type==0" style="position:absolute;right: 60px;bottom: 30px" type="primary" @click="AddOld">下一步</el-button>
+            <el-button style="position:absolute;left: 260px;bottom: 30px" @click="setHide">取 消</el-button>
+            <el-button v-if="!add"  style="position:absolute;right: 260px;bottom: 30px" type="primary" @click="sendEdit">更新</el-button>
+            <el-button v-if="add&&type!=0" style="position:absolute;right: 260px;bottom: 30px" type="primary" @click="sendAdd">添加</el-button>
+            <el-button v-if="add&&type==0" style="position:absolute;right: 260px;bottom: 30px" type="primary" @click="AddOld">下一步</el-button>
           </span>
         </div>
     <div style="text-align: center" v-if="takePhoto">
         <video-box></video-box>
+        <div style="margin-top: 30px"></div>
         <el-button type="primary" @click="takePhotos">拍照</el-button>
 
 
