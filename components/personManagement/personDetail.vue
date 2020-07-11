@@ -1,132 +1,148 @@
 <template>
     <el-dialog
             :title="title"
+            v-if="centerDetailVisible"
             :visible.sync="centerDetailVisible"
+            @close="handleClose"
             width="60%"
+            :destroy-on-close="true"
             center
     >
+
         <div style="text-align: center" v-if="!add">
             <el-avatar :size="100" :src="tou"></el-avatar>
             <div>
             <cli-avatar v-if="edit" ref="av" :pam="param2" @setHide="setHide" @fresh="fresh"></cli-avatar>
             </div>
         </div>
-        <div style="margin: 20px;"></div>
-        <el-form :model="form"
-                 label-width="120px"
-                 label-position="labelPosition"
-
-        >
-
-            <el-form-item label="姓名" >
-                <el-input v-model="form.username" :disabled="!edit"></el-input>
-            </el-form-item>
-
-            <el-form-item label="性别">
-                <el-select  v-model="form.gender" :disabled="!edit">
-                    <el-option label="男" value="男"></el-option>
-                    <el-option label="女" value="女"></el-option>
-                </el-select>
-            </el-form-item>
-
-            <el-form-item label="身份证">
-                <el-input v-model="form.id_card" :disabled="!edit"></el-input>
-            </el-form-item>
-
-            <el-form-item label="出生日期">
-                <el-input v-model="form.birthday" :disabled="!edit"></el-input>
-            </el-form-item>
-
-            <el-form-item label="电话">
-                <el-input v-model="form.phone" :disabled="!edit"></el-input>
-            </el-form-item>
-
-
-            <el-form-item :label="checkInName">
-                <el-input v-model="form.checkin_date" :disabled="!edit"></el-input>
-            </el-form-item>
-
-            <el-form-item :label="checkOutName">
-                <el-input v-model="form.checkout_date" :disabled="!edit"></el-input>
-            </el-form-item>
-
-<!--            老人特有-->
-        <div v-if="type==0">
-
-            <el-form-item label="房间号" >
-                <el-input v-model="form.room_number" :disabled="!edit"></el-input>
-            </el-form-item>
-
-            <el-form-item label="第一监护人姓名" >
-                <el-input v-model="form.firstguardian_name" :disabled="!edit"></el-input>
-            </el-form-item>
-
-            <el-form-item label="与第一监护人关系" >
-                <el-input v-model="form.firstguardian_relationship" :disabled="!edit"></el-input>
-            </el-form-item>
-
-            <el-form-item label="第一监护人电话" >
-                <el-input v-model="form.firstguardian_phone" :disabled="!edit"></el-input>
-            </el-form-item>
-
-            <el-form-item label="第二监护人微信" >
-                <el-input v-model="form.secondguardian_wechat" :disabled="!edit"></el-input>
-            </el-form-item>
-
-            <el-form-item label="第二监护人姓名" >
-                <el-input v-model="form.secondguardian_namee" :disabled="!edit"></el-input>
-            </el-form-item>
-
-            <el-form-item label="与第二监护人关系" >
-                <el-input v-model="form.secondguardian_relationship" :disabled="!edit"></el-input>
-            </el-form-item>
-
-            <el-form-item label="第二监护人电话" >
-                <el-input v-model="form.secondguardian_phone" :disabled="!edit"></el-input>
-            </el-form-item>
-
-            <el-form-item label="第二监护人微信" >
-                <el-input v-model="form.secondguardian_wechat" :disabled="!edit"></el-input>
-            </el-form-item>
-
-            <el-form-item label="健康状态" >
-                <el-input v-model="form.health_state" :disabled="!edit"></el-input>
-            </el-form-item>
-
+        <div style="margin: 20px;text-align: center">
+        <el-steps :active="active" simple style="width:600px;margin: 0 auto">
+            <el-step title="信息填写" icon="el-icon-edit"></el-step>
+            <el-step title="人脸录入" icon="el-icon-camera-solid"></el-step>
+        </el-steps>
         </div>
+        <el-button @click="change"> 临时切换器</el-button>
+            <div v-if="baseInfoVisable">
+                <el-form :model="form"
+                     label-width="120px"
+                     label-position="labelPosition">
 
-<!--            这里是大家公有的-->
+                    <el-form-item label="姓名" >
+                        <el-input v-model="form.username" :disabled="!edit"></el-input>
+                    </el-form-item>
 
-            <el-form-item label="描述">
-                <el-input v-model="form.DESCRIPTION" :disabled="!edit"></el-input>
-            </el-form-item>
-            <el-form-item label="是否有效">
-                <el-input v-model="form.ISACTIVE" :disabled="!edit"></el-input>
-            </el-form-item>
-            <el-form-item label="创建时间">
-                <el-input v-model="form.CREATED" :disabled="false"></el-input>
-            </el-form-item>
-            <el-form-item label="创建人">
-                <el-input v-model="form.CREATEBY" :disabled="false"></el-input>
-            </el-form-item>
-            <el-form-item label="更新时间">
-                <el-input v-model="form.UPDATED" :disabled="false"></el-input>
-            </el-form-item>
-            <el-form-item label="更新人">
-                <el-input v-model="form.UPDATEBY" :disabled="false"></el-input>
-            </el-form-item>
-            <el-form-item label="删除标志">
-                <el-input v-model="form.REMOVE" :disabled="!edit"></el-input>
-            </el-form-item>
+                    <el-form-item label="性别">
+                        <el-select  v-model="form.gender" :disabled="!edit">
+                            <el-option label="男" value="男"></el-option>
+                            <el-option label="女" value="女"></el-option>
+                        </el-select>
+                    </el-form-item>
 
-        </el-form>
+                    <el-form-item label="身份证">
+                        <el-input v-model="form.id_card" :disabled="!edit"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="出生日期">
+                        <el-input v-model="form.birthday" :disabled="!edit"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="电话">
+                        <el-input v-model="form.phone" :disabled="!edit"></el-input>
+                    </el-form-item>
 
 
-  <span slot="footer" class="dialog-footer" v-if="edit">
-    <el-button style="position:absolute;left: 60px;bottom: 30px" @click="setHide">取 消</el-button>
-    <el-button v-if="!add"  style="position:absolute;right: 60px;bottom: 30px" type="primary" @click="sendEdit">更新</el-button>
-    <el-button v-if="add" style="position:absolute;right: 60px;bottom: 30px" type="primary" @click="sendAdd">添加</el-button>
-  </span>
+                    <el-form-item :label="checkInName">
+                        <el-input v-model="form.checkin_date" :disabled="!edit"></el-input>
+                    </el-form-item>
+
+                    <el-form-item :label="checkOutName">
+                        <el-input v-model="form.checkout_date" :disabled="!edit"></el-input>
+                    </el-form-item>
+
+        <!--            老人特有-->
+                <div v-if="type==0">
+
+                    <el-form-item label="房间号" >
+                        <el-input v-model="form.room_number" :disabled="!edit"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="第一监护人姓名" >
+                        <el-input v-model="form.firstguardian_name" :disabled="!edit"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="与第一监护人关系" >
+                        <el-input v-model="form.firstguardian_relationship" :disabled="!edit"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="第一监护人电话" >
+                        <el-input v-model="form.firstguardian_phone" :disabled="!edit"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="第二监护人微信" >
+                        <el-input v-model="form.secondguardian_wechat" :disabled="!edit"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="第二监护人姓名" >
+                        <el-input v-model="form.secondguardian_namee" :disabled="!edit"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="与第二监护人关系" >
+                        <el-input v-model="form.secondguardian_relationship" :disabled="!edit"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="第二监护人电话" >
+                        <el-input v-model="form.secondguardian_phone" :disabled="!edit"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="第二监护人微信" >
+                        <el-input v-model="form.secondguardian_wechat" :disabled="!edit"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="健康状态" >
+                        <el-input v-model="form.health_state" :disabled="!edit"></el-input>
+                    </el-form-item>
+
+                </div>
+
+        <!--            这里是大家公有的-->
+
+                    <el-form-item label="描述">
+                        <el-input v-model="form.DESCRIPTION" :disabled="!edit"></el-input>
+                    </el-form-item>
+                    <el-form-item label="是否有效">
+                        <el-input v-model="form.ISACTIVE" :disabled="!edit"></el-input>
+                    </el-form-item>
+                    <el-form-item label="创建时间">
+                        <el-input v-model="form.CREATED" :disabled="false"></el-input>
+                    </el-form-item>
+                    <el-form-item label="创建人">
+                        <el-input v-model="form.CREATEBY" :disabled="false"></el-input>
+                    </el-form-item>
+                    <el-form-item label="更新时间">
+                        <el-input v-model="form.UPDATED" :disabled="false"></el-input>
+                    </el-form-item>
+                    <el-form-item label="更新人">
+                        <el-input v-model="form.UPDATEBY" :disabled="false"></el-input>
+                    </el-form-item>
+                    <el-form-item label="删除标志">
+                        <el-input v-model="form.REMOVE" :disabled="!edit"></el-input>
+                    </el-form-item>
+                </el-form>
+
+
+          <span slot="footer" class="dialog-footer" v-if="edit">
+            <el-button style="position:absolute;left: 60px;bottom: 30px" @click="setHide">取 消</el-button>
+            <el-button v-if="!add"  style="position:absolute;right: 60px;bottom: 30px" type="primary" @click="sendEdit">更新</el-button>
+            <el-button v-if="add&&type!=0" style="position:absolute;right: 60px;bottom: 30px" type="primary" @click="sendAdd">添加</el-button>
+            <el-button v-if="add&&type==0" style="position:absolute;right: 60px;bottom: 30px" type="primary" @click="AddOld">下一步</el-button>
+          </span>
+        </div>
+    <div style="text-align: center" v-if="takePhoto">
+        <video-box></video-box>
+        <el-button type="primary" @click="takePhotos">拍照</el-button>
+
+
+    </div>
 
     </el-dialog>
 
@@ -135,18 +151,25 @@
 <script>
     import POST from "../../api/POST";
     import PUT from "../../api/PUT";
+    import GET from "../../api";
     import Cookies from "js-cookie"
     import pro from "../../pages/pro";
     import API_PRO from "../../api/API_PRO";
     import CliAvatar from "../base/cliAvatar";
+    import VideoBox from "./videoBox";
     export default {
         name: "personDetail",
-        components: {CliAvatar},
+        components: {VideoBox, CliAvatar},
         data(){
             return{
+                turnOff:true,
+                active: 1,
+                baseInfoVisable:true,
+                takePhoto:false,
                 imgURL:API_PRO.imageURL,
                 param2:{
                 },
+                count:0,
                 tou:'',
                 info:'',
                 title:"",
@@ -187,11 +210,35 @@
                     REMOVE:''
                 }
 
-
-
             }
         },
         methods:{
+            handleClose(){
+                Object.assign(this.$data, this.$options.data())
+            },
+            takePhotos(){
+                if (this.count>=7){
+                    this.$notify({
+                        title: '提示',
+                        message: '人脸信息录入完毕',
+                    });
+                    this.setHide()
+                }else {
+                    GET.takePhoto().then(res=>{
+                        this.$message({
+                            type: 'success',
+                            message: res+'还需要： '+(7-this.count)+'张照片'
+                        });
+                        this.count++
+                    })
+                }
+
+            },
+            change(){
+                this.active++;
+                this.baseInfoVisable = !this.baseInfoVisable;
+                this.takePhoto = !this.takePhoto;
+            },
             setVisible(){
                 this.centerDetailVisible = true
             },
@@ -255,6 +302,37 @@
 
 
             },
+            AddOld(){
+                for (let prop in this.form)
+                {
+                    if (this.form[prop] == null||this.form[prop] == ''){
+                        delete this.form[prop]
+                    }
+                }
+                this.form['CREATED'] = this.getFormatDate();
+                this.form['CREATEBY'] = this.info.username;
+                POST.oldPersonList(this.form).then(res=>{
+                    this.$notify({
+                        title: '提示',
+                        message: '信息添加成功，请录入人脸信息',
+                    });
+                    this.edit = false;
+                    this.$parent.getData();
+                    let data = {
+                        type:this.type,
+                        id:res.id
+                    }
+                    POST.entering(data).then(res=>{
+                        this.$notify({
+                            title: '提示',
+                            message: '相机已启动，请拍照',
+                        });
+                        this.active++;
+                        this.baseInfoVisable = !this.baseInfoVisable;
+                        this.takePhoto = !this.takePhoto;
+                    })
+                })
+            },
             sendAdd(){
                 // let token = Cookies.get('token')
                 // this.form['token'] = token
@@ -266,25 +344,7 @@
                 }
                 this.form['CREATED'] = this.getFormatDate();
                 this.form['CREATEBY'] = this.info.username;
-
-                if (this.type == '0'){
-                    POST.oldPersonList(this.form).then(res=>{
-                        this.$notify({
-                            title: '提示',
-                            message: '添加成功',
-                        });
-                        this.edit = false;
-                        this.$parent.getData();
-                        let data = {
-                            type:this.type,
-                            id:res.id
-                        }
-                        POST.entering(data).then(res=>{
-
-                        })
-                    })
-                }
-                else if (this.type == '1'){
+                if (this.type == '1'){
                     POST.employeeList(this.form).then(res=>{
                         this.$notify({
                             title: '提示',

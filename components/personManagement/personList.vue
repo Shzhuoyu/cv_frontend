@@ -77,10 +77,8 @@
                 :total="tableData.length">
         </el-pagination>
 
-        <person-detail ref="detail"></person-detail>
+        <person-detail ref="detail" @setShutVisible="setShutVisible"></person-detail>
         <oldman-analysis ref="anal"></oldman-analysis>
-
-
 
     </div>
 
@@ -116,6 +114,9 @@
             }
         },
         methods:{
+            setShutVisible(){
+              this.$refs.shut.setVisible()
+            },
             handleCurrentChange(val) {
                 this.currentPage = val;
             },
@@ -127,8 +128,6 @@
                 this.$refs.detail.setTypeEdit(data)
                 this.$refs.detail.setData(item)
                 this.$refs.detail.setVisible()
-
-
             },
             handleEdit(item){
                 let data = {
