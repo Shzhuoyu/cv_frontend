@@ -146,21 +146,23 @@
                         >
                         </el-switch>
                     </el-form-item>
-<!--                    <el-form-item label="创建时间">-->
-<!--                        <el-input v-model="form.CREATED" :disabled="true"></el-input>-->
-<!--                    </el-form-item>-->
-<!--                    <el-form-item label="创建人">-->
-<!--                        <el-input v-model="form.CREATEBY" :disabled="true"></el-input>-->
-<!--                    </el-form-item>-->
-<!--                    <el-form-item label="更新时间">-->
-<!--                        <el-input v-model="form.UPDATED" :disabled="true"></el-input>-->
-<!--                    </el-form-item>-->
-<!--                    <el-form-item label="更新人">-->
-<!--                        <el-input v-model="form.UPDATEBY" :disabled="true"></el-input>-->
-<!--                    </el-form-item>-->
-<!--                    <el-form-item label="删除标志">-->
-<!--                        <el-input v-model="form.REMOVE" :disabled="!edit"></el-input>-->
-<!--                    </el-form-item>-->
+                    <div v-if="!edit">
+                    <el-form-item label="创建时间">
+                        <el-input v-model="form.CREATED" :disabled="true"></el-input>
+                    </el-form-item>
+                    <el-form-item label="创建人">
+                        <el-input v-model="form.CREATEBY" :disabled="true"></el-input>
+                    </el-form-item>
+                    <el-form-item label="更新时间">
+                        <el-input v-model="form.UPDATED" :disabled="true"></el-input>
+                    </el-form-item>
+                    <el-form-item label="更新人">
+                        <el-input v-model="form.UPDATEBY" :disabled="true"></el-input>
+                    </el-form-item>
+                    <el-form-item label="删除标志">
+                        <el-input v-model="form.REMOVE" :disabled="!edit"></el-input>
+                    </el-form-item>
+                    </div>
                 </el-form>
                 <div style="margin-bottom: 60px"></div>
           <span slot="footer" class="dialog-footer" v-if="edit">
