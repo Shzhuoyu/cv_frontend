@@ -15,7 +15,7 @@
             </div>
         </div>
         <div style="margin: 20px;text-align: center">
-        <el-steps :active="active" simple style="width:600px;margin: 0 auto" v-if="add&&type==0">
+        <el-steps :active="active" simple style="width:500px;margin: 0 auto" v-if="add&&type==0">
             <el-step title="信息填写" icon="el-icon-edit"></el-step>
             <el-step title="人脸录入" icon="el-icon-camera-solid"></el-step>
         </el-steps>
@@ -23,7 +23,7 @@
 <!--        <el-button @click="change" v-if="add&&type==0"> 临时切换器</el-button>-->
             <div v-if="baseInfoVisable">
                 <el-form :model="form"
-                     label-width="120px"
+                     label-width="130px"
                      label-position="labelPosition">
 
                     <el-form-item label="姓名" >
@@ -42,23 +42,44 @@
                     </el-form-item>
 
                     <el-form-item label="出生日期">
-                        <el-input v-model="form.birthday" :disabled="!edit"></el-input>
+                        <el-date-picker
+                                v-model="form.birthday"
+                                type="date"
+                                placeholder="选择日期"
+                                :disabled="!edit"
+                                format="yyyy 年 MM 月 dd 日"
+                                value-format="yyyy-MM-dd">
+                        </el-date-picker>
                     </el-form-item>
+
+                    <el-form-item :label="checkInName">
+                        <el-date-picker
+                                v-model="form.checkin_date"
+                                type="date"
+                                placeholder="选择日期"
+                                :disabled="!edit"
+                                format="yyyy 年 MM 月 dd 日"
+                                value-format="yyyy-MM-dd">
+                        </el-date-picker>
+                    </el-form-item>
+
+                    <el-form-item :label="checkOutName">
+                        <el-date-picker
+                                v-model="form.checkout_date"
+                                type="date"
+                                placeholder="选择日期"
+                                :disabled="!edit"
+                                format="yyyy 年 MM 月 dd 日"
+                                value-format="yyyy-MM-dd">
+                        </el-date-picker>
+                    </el-form-item>
+
 
                     <el-form-item label="电话">
                         <el-input v-model="form.phone" :disabled="!edit"></el-input>
                     </el-form-item>
 
-
-                    <el-form-item :label="checkInName">
-                        <el-input v-model="form.checkin_date" :disabled="!edit"></el-input>
-                    </el-form-item>
-
-                    <el-form-item :label="checkOutName">
-                        <el-input v-model="form.checkout_date" :disabled="!edit"></el-input>
-                    </el-form-item>
-
-        <!--            老人特有-->
+                    <!--            老人特有-->
                 <div v-if="type==0">
 
                     <el-form-item label="房间号" >
@@ -77,12 +98,12 @@
                         <el-input v-model="form.firstguardian_phone" :disabled="!edit"></el-input>
                     </el-form-item>
 
-                    <el-form-item label="第二监护人微信" >
-                        <el-input v-model="form.secondguardian_wechat" :disabled="!edit"></el-input>
+                    <el-form-item label="第一监护人微信" >
+                        <el-input v-model="form.firstguardian_wechat" :disabled="!edit"></el-input>
                     </el-form-item>
 
                     <el-form-item label="第二监护人姓名" >
-                        <el-input v-model="form.secondguardian_namee" :disabled="!edit"></el-input>
+                        <el-input v-model="form.secondguardian_name" :disabled="!edit"></el-input>
                     </el-form-item>
 
                     <el-form-item label="与第二监护人关系" >
@@ -98,7 +119,13 @@
                     </el-form-item>
 
                     <el-form-item label="健康状态" >
-                        <el-input v-model="form.health_state" :disabled="!edit"></el-input>
+                        <el-radio-group v-model="form.health_state" size="medium" :disabled="!edit">
+                            <el-radio-button label="不健康" ></el-radio-button>
+                            <el-radio-button label="稍不健康"></el-radio-button>
+                            <el-radio-button label="一般健康"></el-radio-button>
+                            <el-radio-button label="良好健康"></el-radio-button>
+                            <el-radio-button label="非常健康"></el-radio-button>
+                        </el-radio-group>
                     </el-form-item>
 
                 </div>
@@ -109,26 +136,33 @@
                         <el-input v-model="form.DESCRIPTION" :disabled="!edit"></el-input>
                     </el-form-item>
                     <el-form-item label="是否有效">
-                        <el-input v-model="form.ISACTIVE" :disabled="!edit"></el-input>
+                        <el-switch
+                                v-model="form.ISACTIVE"
+                                active-text="是"
+                                inactive-text="否"
+                                :disabled="!edit"
+                                active-value="1"
+                                inactive-value="0">
+                        >
+                        </el-switch>
                     </el-form-item>
-                    <el-form-item label="创建时间">
-                        <el-input v-model="form.CREATED" :disabled="false"></el-input>
-                    </el-form-item>
-                    <el-form-item label="创建人">
-                        <el-input v-model="form.CREATEBY" :disabled="false"></el-input>
-                    </el-form-item>
-                    <el-form-item label="更新时间">
-                        <el-input v-model="form.UPDATED" :disabled="false"></el-input>
-                    </el-form-item>
-                    <el-form-item label="更新人">
-                        <el-input v-model="form.UPDATEBY" :disabled="false"></el-input>
-                    </el-form-item>
-                    <el-form-item label="删除标志">
-                        <el-input v-model="form.REMOVE" :disabled="!edit"></el-input>
-                    </el-form-item>
+<!--                    <el-form-item label="创建时间">-->
+<!--                        <el-input v-model="form.CREATED" :disabled="true"></el-input>-->
+<!--                    </el-form-item>-->
+<!--                    <el-form-item label="创建人">-->
+<!--                        <el-input v-model="form.CREATEBY" :disabled="true"></el-input>-->
+<!--                    </el-form-item>-->
+<!--                    <el-form-item label="更新时间">-->
+<!--                        <el-input v-model="form.UPDATED" :disabled="true"></el-input>-->
+<!--                    </el-form-item>-->
+<!--                    <el-form-item label="更新人">-->
+<!--                        <el-input v-model="form.UPDATEBY" :disabled="true"></el-input>-->
+<!--                    </el-form-item>-->
+<!--                    <el-form-item label="删除标志">-->
+<!--                        <el-input v-model="form.REMOVE" :disabled="!edit"></el-input>-->
+<!--                    </el-form-item>-->
                 </el-form>
-
-
+                <div style="margin-bottom: 60px"></div>
           <span slot="footer" class="dialog-footer" v-if="edit">
             <el-button style="position:absolute;left: 260px;bottom: 30px" @click="setHide">取 消</el-button>
             <el-button v-if="!add"  style="position:absolute;right: 260px;bottom: 30px" type="primary" @click="sendEdit">更新</el-button>
