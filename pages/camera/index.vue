@@ -114,8 +114,8 @@
         components: {CliTitle, CliMenu},
         data() {
             return {
-                // mainSrc: "rtmp://39.97.124.237:1984/wodelive/",
-                mainSrc: 'rtmp://202.69.69.180:443/webcast/bshdlive-pc/',
+                mainSrc: "rtmp://39.97.124.237:1984/wodelive/",
+                // mainSrc: 'rtmp://202.69.69.180:443/webcast/bshdlive-pc',
                 Src1: "",
                 Src2: "",
                 Src3: "",

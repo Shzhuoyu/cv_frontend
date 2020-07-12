@@ -8,7 +8,6 @@
                    height="400" data-setup="{}">
                 <source :src="mainSrc" type="rtmp/flv">
             </video>
-            <div class="text">{{mainSrcName}}</div>
         </div>
     </div>
 </template>
