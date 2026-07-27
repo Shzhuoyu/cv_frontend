@@ -5,21 +5,25 @@
         </div>
         <el-dialog
                 title="事件图片"
-                :visible.sync="showPic"
+                v-model="showPic"
                 width="550px"
                 center>
             <el-image :src="picUrl">
-                <div slot="placeholder" class="image-slot">
-                    <div style="width: 500px; text-align: center">加载中...</div>
-                </div>
-                <div slot="error" class="image-slot">
-                    <div style="width: 500px; text-align: center">加载失败</div>
-                </div>
+                <template #placeholder>
+                    <div class="image-slot">
+                        <div style="width: 500px; text-align: center">加载中...</div>
+                    </div>
+                </template>
+                <template #error>
+                    <div class="image-slot">
+                        <div style="width: 500px; text-align: center">加载失败</div>
+                    </div>
+                </template>
             </el-image>
-            <span slot="footer" class="dialog-footer">
+            <template #footer><span class="dialog-footer">
                 <el-button @click="showPic = false">取 消</el-button>
                 <el-button type="primary" @click="showPic = false">确 定</el-button>
-            </span>
+            </span></template>
         </el-dialog>
         <el-table
                 ref="filterTable"
@@ -57,7 +61,7 @@
                     label="事件描述">
             </el-table-column>
             <el-table-column>
-                <template slot="header" slot-scope="scope">
+                <template #header="scope">
                     <el-input
                             v-model="search"
                             size="mini"
@@ -71,7 +75,7 @@
                     :filters="[{ text: '微笑', value: '微笑' }, { text: '交互', value: '交互' }]"
                     :filter-method="filterTag"
                     filter-placement="bottom-end">
-                <template slot-scope="scope">
+                <template #default="scope">
                     <el-tag
                             :type="scope.row.tag === '交互' ? 'success' : 'primary'"
                             disable-transitions>{{scope.row.tag}}

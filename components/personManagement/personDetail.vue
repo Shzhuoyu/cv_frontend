@@ -2,7 +2,7 @@
     <el-dialog
             :title="title"
             v-if="centerDetailVisible"
-            :visible.sync="centerDetailVisible"
+            v-model="centerDetailVisible"
             :before-close="handleClose"
             width="60%"
             center
@@ -16,8 +16,8 @@
         </div>
         <div style="margin: 20px;text-align: center">
         <el-steps :active="active" simple style="width:600px;margin: 0 auto" v-if="add">
-            <el-step title="信息填写" icon="el-icon-edit"></el-step>
-            <el-step title="人脸录入" icon="el-icon-camera-solid"></el-step>
+            <el-step title="信息填写" icon="Edit"></el-step>
+            <el-step title="人脸录入" icon="CameraFilled"></el-step>
         </el-steps>
         </div>
 <!--        <el-button @click="change" v-if="add&&type==0"> 临时切换器</el-button>-->
@@ -165,11 +165,6 @@
                     </div>
                 </el-form>
                 <div style="margin-bottom: 60px"></div>
-          <span slot="footer" class="dialog-footer" v-if="edit">
-            <el-button style="position:absolute;left: 260px;bottom: 30px" @click="setHide">取 消</el-button>
-            <el-button v-if="!add"  style="position:absolute;right: 260px;bottom: 30px" type="primary" @click="sendEdit">更新</el-button>
-            <el-button v-if="add" style="position:absolute;right: 260px;bottom: 30px" type="primary" @click="sendAdd">下一步</el-button>
-          </span>
         </div>
     <div style="text-align: center" v-if="takePhoto">
         <video-box></video-box>
@@ -179,6 +174,13 @@
 
     </div>
 
+    <template #footer>
+        <span class="dialog-footer" v-if="baseInfoVisable && edit">
+            <el-button style="position:absolute;left: 260px;bottom: 30px" @click="setHide">取 消</el-button>
+            <el-button v-if="!add"  style="position:absolute;right: 260px;bottom: 30px" type="primary" @click="sendEdit">更新</el-button>
+            <el-button v-if="add" style="position:absolute;right: 260px;bottom: 30px" type="primary" @click="sendAdd">下一步</el-button>
+        </span>
+    </template>
     </el-dialog>
 
 </template>

@@ -4,7 +4,7 @@
             <el-col :span="15" class="card">
                 <el-card shadow="hover" :body-style="{padding: '0px'}">
                     <div class="grid-content grid-con-1">
-                        <i class="el-icon-user grid-con-icon"></i>
+                        <el-icon class="grid-con-icon"><User/></el-icon>
                         <div class="grid-cont-right">
                             <div class="grid-num">{{total.elderNum}}</div>
                             <span class="subtext">{{currentTime}}</span>
@@ -16,7 +16,7 @@
             <el-col :span="15" class="card">
                 <el-card shadow="hover" :body-style="{padding: '0px'}">
                     <div class="grid-content grid-con-2">
-                        <i class="el-icon-user grid-con-icon"></i>
+                        <el-icon class="grid-con-icon"><User/></el-icon>
                         <div class="grid-cont-right">
                             <div class="grid-num">{{total.staffNum}}</div>
                             <span class="subtext">{{currentTime}}</span>
@@ -28,7 +28,7 @@
             <el-col :span="15" class="card">
                 <el-card shadow="hover" :body-style="{padding: '0px'}">
                     <div class="grid-content grid-con-4">
-                        <i class="el-icon-user grid-con-icon"></i>
+                        <el-icon class="grid-con-icon"><User/></el-icon>
                         <div class="grid-cont-right">
                             <div class="grid-num">{{total.volunteerNum}}</div>
                             <span class="subtext">{{currentTime}}</span>
@@ -40,7 +40,7 @@
             <el-col :span="15" class="card">
                 <el-card shadow="hover" :body-style="{padding: '0px'}">
                     <div class="grid-content grid-con-3">
-                        <i class="el-icon-user grid-con-icon"></i>
+                        <el-icon class="grid-con-icon"><User/></el-icon>
                         <div class="grid-cont-right">
                             <div class="grid-num">{{total.strangerNum}}</div>
                             <span class="subtext">{{currentTime}}</span>

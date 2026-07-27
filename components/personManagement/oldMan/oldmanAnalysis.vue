@@ -1,7 +1,7 @@
 <template>
     <el-dialog
             :title="title"
-            :visible.sync="centerDetailVisible"
+            v-model="centerDetailVisible"
             width="70%"
             center>
 
@@ -22,19 +22,16 @@
             <div id="allLine" style="width: 850px;height:400px;"></div>
         </el-card>
 
-        <span slot="footer" class="dialog-footer">
+        <template #footer><span class="dialog-footer">
             <el-button  @click="setHide">关闭</el-button>
-        </span>
+        </span></template>
 
     </el-dialog>
 
 </template>
 
 <script>
-    import echarts from 'echarts';
-    import Vue from 'vue'
 
-    Vue.prototype.$echarts = echarts;
     export default {
         name: "oldmanAnalysis",
         data(){

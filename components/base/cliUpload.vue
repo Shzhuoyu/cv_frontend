@@ -18,7 +18,7 @@
     import API from '../../api'
     import Cookies from 'js-cookie'
     import axios from 'axios'
-    import { Loading } from 'element-ui'
+    import { ElLoading } from 'element-plus'
 
     export default {
         props:{
@@ -81,10 +81,9 @@
                 }
 
                 this.filename =file.name
-                const loading = Loading.service({
+                const loading = ElLoading.service({
                     lock: true,
-                    text: '文件上传中',
-                    spinner: 'el-icon-loading'
+                    text: '文件上传中'
                 })
 
                 if(this.urltype === 'notify' || this.urltype === 'zhengji'){

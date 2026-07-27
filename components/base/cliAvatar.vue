@@ -10,7 +10,7 @@
 <script>
     import PRO from '../../api/API_PRO.js';
     import axios from 'axios';
-    import { Loading } from 'element-ui'
+    import { ElLoading } from 'element-plus'
     export default {
         name: "cliAvatar",
         props:{
@@ -48,10 +48,9 @@
                 console.log(this.config)
                 console.log(param.get('id'))
                 console.log(param.get('type'))
-                const loading = Loading.service({
+                const loading = ElLoading.service({
                     lock: true,
-                    text: '文件上传中',
-                    spinner: 'el-icon-loading'
+                    text: '文件上传中'
                 })
                 axios.post(this.url,param,this.config).then(response=>{
                     loading.close()

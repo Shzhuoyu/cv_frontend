@@ -1,65 +1,35 @@
-const webpack = require('webpack')
-module.exports = {
-  /*
-  ** Headers of the page
-  */
-  head: {
-    title: '智慧养老',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/weblogo.png' }
-    ]
-  },
-  /*
-  ** Customize the progress bar color
-  */
-  loading: { color: '#3B8070' },
-  mode:'spa',
-  /*
-  ** Build configuration
-  */
-  build: {
-    vendor: ['axios', 'element-ui'],
-    babel: {
-      'plugins': [['component', [
-        {
-          'libraryName': 'element-ui',
-          'styleLibraryName': 'theme-chalk'
-        },
-        'transform-async-to-generator',
-        'transform-runtime'
-      ]]],
-      comments: true
-    },
-    /*
-    ** Run ESLint on save
-    */
-    // extend (config, { isDev, isClient }) {
-    //   if (isDev && isClient) {
-    //     config.module.rules.push({
-    //       enforce: 'pre',
-    //       test: /\.(js|vue)$/,
-    //       loader: 'eslint-loader',
-    //       exclude: /(node_modules)/
-    //     })
-    //   }
-    // },
-    plugins: [
-      new webpack.ProvidePlugin({
-        '$': 'jquery',
-        '_': 'lodash'
-      })
-    ]
-  },
-  plugins: [
-    { src: '~plugins/element-ui.js' },
-    { src: '~plugins/quill-plugins.js',ssr:false},
-    {src: '~plugins/lodash.js', ssr: false},
-    {src:'~plugins/echarts.js'},
-  ]
-}
+export default defineNuxtConfig({
+  // This project is a client-side SPA (was `mode: 'spa'` in Nuxt 1).
+  ssr: false,
+  compatibilityDate: '2024-11-01',
+  devtools: { enabled: false },
 
+  modules: ['@pinia/nuxt'],
+
+  // Plugins in ~/plugins are auto-registered (element-plus / echarts / auth-init,
+  // all client-only via the `.client` suffix).
+
+  app: {
+    head: {
+      title: '智慧养老',
+      htmlAttrs: { lang: 'zh-CN' },
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: 'Elder Care Monitoring System' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/weblogo.png' }
+      ]
+    }
+  },
+
+  // former `build.vendor` / webpack ProvidePlugin / babel-plugin-component are
+  // no longer needed: Vite + Element Plus handle bundling, and lodash/echarts
+  // are imported explicitly where used.
+  vite: {
+    optimizeDeps: {
+      include: ['element-plus', '@element-plus/icons-vue', 'echarts']
+    }
+  }
+})

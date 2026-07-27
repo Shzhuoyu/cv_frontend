@@ -56,14 +56,14 @@
                 </el-row>
                 <el-dialog
                         title="老人年龄分布"
-                        :visible.sync="showAgeOption"
+                        v-model="showAgeOption"
                         width="40%"
                         center>
                         <age ref="ageRef"></age>
-                    <span slot="footer" class="dialog-footer">
+                    <template #footer><span class="dialog-footer">
                         <el-button @click="showAgeOption = false">取 消</el-button>
                         <el-button type="primary" @click="showAgeOption = false">确 定</el-button>
-                    </span>
+                    </span></template>
                 </el-dialog>
             </div>
             <el-button style="position:absolute;right: 180px " type="primary"
@@ -83,12 +83,9 @@
     import interaction from "../../components/chart/interaction";
     import smile from "../../components/chart/smile";
     import age from "../../components/chart/age";
-    import echarts from 'echarts';
-    import Vue from 'vue'
     import GET from "../../api";
     import API_PRO from "../../api/API_PRO";
 
-    Vue.prototype.$echarts = echarts;
 
     export default {
         name: "index",

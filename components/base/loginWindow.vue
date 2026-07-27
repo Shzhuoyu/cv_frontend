@@ -2,7 +2,7 @@
     <div>
         <el-dialog
                 title="登入"
-                :visible.sync="centerVisible"
+                v-model="centerVisible"
                 width="30%"
                 center>
             <div style="margin: 20px;"></div>
@@ -10,12 +10,12 @@
                 <el-form :model="form">
                     <el-form-item>
                         <el-input v-model="form.username" placeholder="username">
-                            <el-button slot="prepend" icon="el-icon-user"></el-button>
+                            <template #prepend><el-button icon="User"></el-button></template>
                         </el-input>
                     </el-form-item>
                     <el-form-item>
                         <el-input v-model="form.password" placeholder="password" show-password>
-                            <el-button slot="prepend" icon="el-icon-lock"></el-button>
+                            <template #prepend><el-button icon="Lock"></el-button></template>
                         </el-input>
                     </el-form-item>
                 </el-form>

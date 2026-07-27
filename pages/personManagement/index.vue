@@ -7,7 +7,7 @@
         <div class="center">
 <!--            <el-card>-->
                 <el-button class="add_button" type="success" @click="handleAdd">
-                    <i class="el-icon-circle-plus"></i>  添加{{typeName}}</el-button>
+                    <el-icon><CirclePlus/></el-icon>  添加{{typeName}}</el-button>
 
                 <el-tabs v-model="type" type="border-card" @tab-click="handleClick">
 

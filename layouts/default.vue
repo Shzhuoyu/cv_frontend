@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <nuxt/>
+      <slot />
     </div>
   </div>
 

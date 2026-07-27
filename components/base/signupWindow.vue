@@ -1,7 +1,7 @@
 <template>
     <el-dialog
             title=""
-            :visible.sync="centerVisible"
+            v-model="centerVisible"
             width="40%"
             center>
         <div style="margin: 20px;"></div>
@@ -31,11 +31,6 @@
                         <el-input v-model="form.verificationID"></el-input>
                     </el-form-item>
                 </el-form>
-                <span slot="footer" class="dialog-footer">
-                <el-button style="position:absolute;left: 200px;bottom: 30px" @click="setHide">取 消</el-button>
-                <el-button style="position:absolute;right: 200px;bottom: 30px" type="primary"
-                           @click="signUp">注册</el-button>
-            </span>
             </div>
         </div>
 
@@ -72,13 +67,17 @@
                         <el-input v-model="info.DESCRIPTION"></el-input>
                     </el-form-item>
                 </el-form>
-                <span slot="footer" class="dialog-footer">
-                <el-button style="position:absolute;left: 200px;bottom: 30px" @click="setHide">取 消</el-button>
-                <el-button style="position:absolute;right: 200px;bottom: 30px" type="primary"
-                           @click="setInfo">录 入</el-button>
-            </span>
             </div>
         </div>
+        <template #footer>
+            <span class="dialog-footer">
+                <el-button style="position:absolute;left: 200px;bottom: 30px" @click="setHide">取 消</el-button>
+                <el-button v-if="active===0" style="position:absolute;right: 200px;bottom: 30px" type="primary"
+                           @click="signUp">注册</el-button>
+                <el-button v-if="active===1" style="position:absolute;right: 200px;bottom: 30px" type="primary"
+                           @click="setInfo">录 入</el-button>
+            </span>
+        </template>
     </el-dialog>
 </template>
 

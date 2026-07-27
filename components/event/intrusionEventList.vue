@@ -5,21 +5,25 @@
         </div>
         <el-dialog
                 title="事件图片"
-                :visible.sync="showPic"
+                v-model="showPic"
                 width="550px"
                 center>
             <el-image :src="picUrl">
-                <div slot="placeholder" class="image-slot">
-                    <div style="width: 500px; text-align: center">加载中...</div>
-                </div>
-                <div slot="error" class="image-slot">
-                    <div style="width: 500px; text-align: center">加载失败</div>
-                </div>
+                <template #placeholder>
+                    <div class="image-slot">
+                        <div style="width: 500px; text-align: center">加载中...</div>
+                    </div>
+                </template>
+                <template #error>
+                    <div class="image-slot">
+                        <div style="width: 500px; text-align: center">加载失败</div>
+                    </div>
+                </template>
             </el-image>
-            <span slot="footer" class="dialog-footer">
+            <template #footer><span class="dialog-footer">
                 <el-button @click="showPic = false">取 消</el-button>
                 <el-button type="primary" @click="showPic = false">确 定</el-button>
-            </span>
+            </span></template>
         </el-dialog>
         <el-table
                 ref="filterTable"
@@ -58,7 +62,7 @@
                     :filters="[{ text: '摔倒', value: '摔倒' }, { text: '禁止区域入侵', value: '禁止区域入侵' }, { text: '陌生人来访', value: '陌生人来访' }]"
                     :filter-method="filterTag"
                     filter-placement="bottom-end">
-                <template slot-scope="scope">
+                <template #default="scope">
                     <el-tag
                             :type="scope.row.tag === '摔倒' ? 'danger' : (scope.row.tag === '禁止区域入侵' ? 'warning' : 'info' )"
                             disable-transitions>{{scope.row.tag}}

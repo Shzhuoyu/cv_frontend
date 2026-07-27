@@ -11,8 +11,8 @@
 <!--            </el-submenu>-->
 <!--        </el-menu>-->
         <div class="collapse-btn" @click="collapseChage">
-            <i v-if="!collapse" class="el-icon-s-fold"></i>
-            <i v-else class="el-icon-s-unfold"></i>
+            <el-icon v-if="!collapse"><Fold/></el-icon>
+            <el-icon v-else><Expand/></el-icon>
         </div>
         <div class="logo">后台管理系统</div>
         <div class="header-right">
@@ -20,7 +20,7 @@
                 <!-- 全屏显示 -->
                 <div class="btn-fullscreen" @click="handleFullScreen">
                     <el-tooltip effect="dark" :content="fullscreen?`取消全屏`:`全屏`" placement="bottom">
-                        <i class="el-icon-rank"></i>
+                        <el-icon><Rank/></el-icon>
                     </el-tooltip>
                 </div>
                 <!-- 用户头像 -->
@@ -31,12 +31,12 @@
                 <el-dropdown class="user-name" trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
                         {{info.username}}
-                        <i class="el-icon-caret-bottom"></i>
+                        <el-icon><CaretBottom/></el-icon>
                     </span>
-                    <el-dropdown-menu slot="dropdown">
+                    <template #dropdown><el-dropdown-menu>
                         <el-dropdown-item divided command="toInfo">修改信息</el-dropdown-item>
                         <el-dropdown-item divided command="logOut">退出登录</el-dropdown-item>
-                    </el-dropdown-menu>
+                    </el-dropdown-menu></template>
                 </el-dropdown>
             </div>
         </div>

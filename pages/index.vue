@@ -1,4 +1,4 @@
-<template style="overflow-y: hidden; overflow-x:hidden">
+<template>
     <div>
         <!--背景-->
         <div class="back-ground" style="overflow-y: hidden; z-index: -1">
@@ -81,17 +81,13 @@
 </template>
 
 <script>
-    import upload from '~/components/base/cliUpload.vue'
-    import SvgIcon from "../components/SvgIcon/index";
     import SignupWindow from "../components/base/signupWindow";
     import LoginWindow from "../components/base/loginWindow";
 
     export default {
         components: {
             LoginWindow,
-            SignupWindow,
-            SvgIcon,
-            upload
+            SignupWindow
         },
 
         data() {

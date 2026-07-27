@@ -19,24 +19,24 @@
 <!--                text-color="#003377"-->
 <!--                active-text-color="#009FCC">-->
             <el-menu-item index="1">
-                <i class="el-icon-menu"></i>
-                <span slot="title">监控信息</span>
+                <el-icon><Menu/></el-icon>
+                <template #title><span>监控信息</span></template>
             </el-menu-item>
             <el-menu-item index="2">
-                <i class="el-icon-user"></i>
-                <span slot="title">人员管理</span>
+                <el-icon><User/></el-icon>
+                <template #title><span>人员管理</span></template>
             </el-menu-item>
             <el-menu-item index="3">
-                <i class="el-icon-document"></i>
-                <span slot="title">统计报表</span>
+                <el-icon><Document/></el-icon>
+                <template #title><span>统计报表</span></template>
             </el-menu-item>
             <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
-                <span slot="title">实时事件</span>
+                <el-icon><Setting/></el-icon>
+                <template #title><span>实时事件</span></template>
             </el-menu-item>
             <el-menu-item index="5">
-                <i class="el-icon-camera"></i>
-                <span slot="title">机位操控</span>
+                <el-icon><Camera/></el-icon>
+                <template #title><span>机位操控</span></template>
             </el-menu-item>
         </el-menu>
     </div>

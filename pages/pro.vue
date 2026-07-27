@@ -36,14 +36,14 @@
                                     <el-card class="buyCard" shadow="hover">
                                         <el-form :model="proForm" ref="proForm" :label-position="labelPosition">
                                             <el-form-item prop="name" style="margin-top: 10px;margin-bottom: 0px">
-                                                <span v-model="proForm.name" style="font-size: 30px">{{proInfo[0].productname}}</span>
+                                                <span style="font-size: 30px">{{proInfo[0].productname}}</span>
                                             </el-form-item>
                                             <el-form-item prop="sname" style="margin-top: 10px;margin-bottom: 0px">
-                                                <span v-model="proForm.sname" style="font-size: 20px"><img src="../assets/image/storeIcon.png">{{proInfo[0].storename}}</span>
+                                                <span style="font-size: 20px"><img src="../assets/image/storeIcon.png">{{proInfo[0].storename}}</span>
                                             </el-form-item>
                                             <el-form-item prop="price" style="margin-top: 10px;margin-bottom: 0px">
                                                 <div style="height: 100px;background-color: rgba(216,255,238,0.28)">
-                                                    <span>价格：</span><span v-model="proForm.price" style="margin-top:20px;font-size: 30px;color: #dd6161">{{proInfo[0].unitprice+'￥'}}</span>
+                                                    <span>价格：</span><span style="margin-top:20px;font-size: 30px;color: #dd6161">{{proInfo[0].unitprice+'￥'}}</span>
                                                 </div>
                                             </el-form-item>
                                             <el-form-item prop="num" style="margin-top: 10px;margin-bottom: 0px">
@@ -76,7 +76,7 @@
                                 <!--评论抽屉-->
                                 <el-drawer
                                         title="商品评论"
-                                        :visible.sync="drawer"
+                                        v-model="drawer"
                                         size="50%">
                                     <div style="overflow-y:auto;height: 95%">
                                         <el-card v-for="(item,i) in procomment" :key="i" shadow="hover" style="margin-top: 2%">

@@ -13,7 +13,7 @@
         <el-table-column
                 label="头像"
                 width="80">
-            <template slot-scope="scope">
+            <template #default="scope">
                 <el-avatar :src="imgURL+scope.row.profile_photo"></el-avatar>
             </template>
         </el-table-column>
@@ -39,8 +39,8 @@
         <el-table-column
                 label="生日"
                 width="180">
-            <template slot-scope="scope">
-                <i class="el-icon-time"></i>
+            <template #default="scope">
+                <el-icon><Clock/></el-icon>
                 <span style="margin-left: 10px">{{ scope.row.birthday}}</span>
             </template>
         </el-table-column>
@@ -51,7 +51,7 @@
         ></el-table-column>
 
         <el-table-column label="操作">
-            <template slot-scope="scope">
+            <template #default="scope">
                 <el-button
                         size="mini"
                         @click="handleDetail(scope.row)">详情</el-button>
